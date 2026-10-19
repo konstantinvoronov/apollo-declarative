@@ -1,5 +1,11 @@
 # AI Agents Guide (`AGENTS.md`)
 
+## Declarative Foldering Authority
+
+Read [Declarative Foldering Rules](../ai_development/declarative_foldering_rules.md) before resolving architectural placement or dependencies. That document is the source of truth for default ownership, scope, layers, responsibilities, and import/export directions.
+
+This root guide and applicable descendant `AGENTS.md` files are scoped override declarations. Omitted fields inherit the document defaults; only explicitly declared, approved differences replace corresponding rules within their scope. Do not duplicate the general architecture or silently treat contradictory legacy text as an intentional override.
+
 This file defines how agents must work with repository. It only cover certain places we manage to get hands on
 
 Main rule - keep it simple, always try to find simple, streamlined, easy to digest solution
@@ -8,54 +14,35 @@ that will do the job. no overengenering, optional things or extra cautios.
 
 # Foldering architecture
 
-In this project very important for coding agent to position files in correct folder. Each folder has
-its own Agents.md files defining purpose of the folder, what subfolders alowed in it, what is resposobilite
-of the files stored in the folders, what those files are allowed to be depended on , and what is allowed to include.
+In this project it is important to position files in the correct architectural folders. Applicable blueprint and general layer rules define their responsibilities, structure, naming, and dependencies. A separate local AGENTS.md is needed only for an uncovered requirement or exception.
 
 Dependencie rules estimated ralatebly to import and export syntact form the files inside folders.
 
 To enforce declared architecture structure every time you finish implementing something new you must
 run linter screen that will check how good you are doing and request changes if you broke the rules.
 
-## Layering
+## Project Instructions and Scoped Overrides
 
-Inside the prjoect used modification of CLEAN architecture layering along with feature drived development approach
-and with specific extra folders.
-explaining foldering dependenciries basing on the recursive base (each subfolder must add rules to all folders alogn the path)
-or by name of the layer cross folders - layreing limits. those are described down
+### AppFailure usage instructions
 
-## Global Layreing limits Dependency rules.
+Follow `/ai_development/app_failure_usage_rules.md` when implementing or reviewing failure handling.
 
-In some folders in AGENTS.md files may be relus set as correstpondent layer. and we have 4 different layers and one modificator
-modificator (a subfolder name inside layer folder)
+### StatefulData usage instructions
 
-- shared  - its a folder that can meet across folders and (ecvept /shared) all the shared folders is a wiring folders. thay contain export files declaring what from the folder is allowed to include cross feature
+Use the published `stateful_data` package for declarative data lifecycles instead of local `Resource` or per-value lifecycle types such as `AppSessionState`. Follow `/ai_development/stateful_data_usage_rules.md` when implementing or reviewing these lifecycles. This models a single data value, not the screen or Controller's overall state.
 
-Layers (can meat across porject presented as folder names)
+### Architectural-rule approval safeguard
 
-- Domain
-- Data
-- Infrastructure
-- Presentation
+Architectural-rule changes must match the exact proposed and approved content. Approval of an architectural outcome does not authorize additional constraints, prerequisites, or documentation requirements. Any newly discovered policy decision must be presented separately. Reviews must check both compliance and approval provenance.
 
-They have very specific add on to dependencies writen in AGENTS.md files in ralated folders.
+### DI startup and registration boundaries
 
-Domain fodler from features can not be dependent on anything else but itself (other files form the folder) or others Domain/shared (form other features)
-
-Data folder allowed be dependednt on it's own feature/domain layer or other files from same data layer 
-or others features Domain/shared
-
-Inrustructure - Layer that can depend only on domain,data layers from its feature or on what the domain and data allow to depend
-and globaly on /shared, /app , /core (except /core/managers,/core/flows,)
-
-Presentation  - screens and bottomsheets depends only on designated controllers and controllers may depend only on the repositories or use_cases from domain folder
-or if in the file imported anything from /core/managers then only meneger dependent allow.
-
+`/lib/app/di.dart` owns the GetIt container and initialization sequence. Its project imports are restricted to `/lib/app/di/`; Dart SDK and `get_it` remain permitted for wiring. The feature helper `/lib/app/di/features_di.dart` may import only public feature-root `/lib/features/<feature_name>/di.dart` entrypoints. The Core helper `/lib/app/di/core_di.dart` may import only `/lib/core/core_di.dart` as a project dependency. Both receive the container as an argument and are consumed only by the global DI entrypoint. Core's coordinator owns Core registrations, not feature registration or application routing/authentication policy. Resolve both dependency directions at every hop; this wiring does not permit importing feature internals.
 
 ## Logging Foldering structure and architecture
 
 foldering is important - it defines scope, responsobilites and give instructions,
-read agents file in root folder and in every folder you work with.
+read applicable root, blueprint, and ancestor AGENTS.md files; do not create missing local guides unless an uncovered requirement or exception needs one.
 
 store and update files accord ing to instructions.
 
@@ -66,6 +53,8 @@ file element_name_spec.md that hace figma link inside and spec for ai agent
 file element_name_plan.md file with current developing progress and developer corrections and code review and progress
 
 ## Developing principles
+
+Preserve existing comments, especially comments the agent did not author. Do not remove, rewrite, or translate them without explicit developer approval. If an existing comment appears outdated or conflicts with the implementation, report the mismatch for discussion instead of silently changing it. The English-language convention does not authorize changing existing comments.
 
 Ask many question during planning sessions
 Minimal refactor,
@@ -92,4 +81,3 @@ each task should containing planing/rewieving plan/implementing/reviewing/corret
 it may involve other stage
 
 ask if we need to write test but never do it by default
-

@@ -1,25 +1,34 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/libs`
 
-/libs — External / Protected Code
+## SRP
 
-## 1. Foldering structure and architecture limits and requirements and dependenscy
+Contains protected, reusable multi-project source. Library ownership does not replace architectural scope, layer, responsibility, or dependency boundaries. Apply the general architectural rules in `/lib/AGENTS.md`; do not repeat them for each library.
 
-Only one folder for the project
+## Shared Blueprints
 
-## 2. Reponsobilities for this folder
+A `shared` folder inside a library contains protected project-integration blueprints. These files are not production entrypoints and are not customized or used directly from `/lib/libs`. Copy a required blueprint to `/lib/shared/<library_name>/` and configure the project-local copy there.
 
-Multi-project reusable code wich is not exaclty libraries but some code that has no
-direct dependency on the project or current implementation, sub repositories included in multiple porjects/
-Imported libraries / submodules / Stable base layer
+Unchanged reusable source may be imported directly when its architectural layer permits it. Project-specific adaptations belong in Shared; copies or re-exports are not mandatory for unchanged source.
 
-## 3. Rules Dependency limits:
+## Allowed Direct Children
 
-- READ-ONLY this code is open for extansion but closed for modification, if you ever need to modify code from here you put it in shared 
-- Again, No modification without explicit permission
-- Cannot depend on ANY other folder, May depend on toher code within libs forlder
-- Can be used by folder within appropiate layers 
+- `<library_name>`
 
+## Allowed Files
+
+- none
+
+## Naming
+
+- Library folders: `snake_case`
+- Descendants use the corresponding architectural scope, layer, and responsibility rules.
+
+## Forbidden
+
+- modifying protected source without explicit approval
+- dependencies on project App, feature implementations, or project wiring
+- importing protected `shared` blueprints directly into production code

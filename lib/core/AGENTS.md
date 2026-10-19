@@ -1,25 +1,26 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/core`
 
-/core — App-Level Global logic lives—like your UI kit extensions, shared services, and any utilities that are global and not specific to this particular app.
-App-specific, but feature-independent,
+## SRP
 
-## 1. Foldering structure and architecture limits and requirements and dependenscy
+Core inherits its scope, layers, responsibilities, and general dependency directions from `/ai_development/declarative_foldering_rules.md`. Feature-private visibility from the feature blueprint does not restrict Core Domain consumers.
 
-Only one folder for the project
+`core_di.dart` coordinates Core registrations only. App composes this entrypoint through `/lib/app/di/core_di.dart`; the coordinator does not register features or implement routing or authentication policy.
 
-## 2. Reponsobilities for this folder
+Managers coordinate features through public `domain/shared` contracts. Their consumers are App wiring, Core Flows, and feature Presentation Controllers, subject to both dependency directions. This is a Manager-specific boundary, not a restriction on Core Domain.
 
-Global services (auth, session, config)
-Builders, helpers
-Extensions over /shared
+## Allowed Files
 
-## 3. Rules Dependency limits:
+- `core_di.dart`
 
-- Can depend on: shared
-- Cannot depend on: features
-- Must NOT contain business/domain logic
-- Accessible from anywhere
+## Naming
+
+- Managers: `<Name>Manager` in `<name>_manager.dart`
+
+## Forbidden
+
+- Manager dependencies on App wiring, feature implementations, Data, Infrastructure, or Presentation
+- Domain, Data, Infrastructure, screen, sheet, or widget consumers of Managers, including through exports
