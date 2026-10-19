@@ -1,24 +1,41 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/features/feature_name`
 
-/features/feature_name — This is a blue print for a feature it create structure and explain rule for a Feature
+## SRP
 
-# Foldering structure and architecture limits and requirements and dependenscy
+Contains one feature's functionality using only the architectural folders needed under the governing document. The feature-root `di.dart` is the feature's single public DI entrypoint and composes every feature-local registration.
 
-in /features can be as many features as required by the app. 
+## Allowed Direct Children
 
-## 2. Reponsobilities for this folder
+- `ai_development`
+- `data`
+- `domain`
+- `infrastructure`
+- `presentation`
+- `services`
 
-Contain ALL app-specific features specific functionality separated by specified layers architucture and following rule.
+## Allowed Files
 
-## 3. Rules Dependency limits:
+- `di.dart`
 
-- Can depend on: app, core, libs/ shared,
-- MUST NOT depend directly on other features
-- Cannot be accessed from any where in the project except from /core/managers/
-- All data inside
-  
-- contain only folders iniside LAYER DEFINITIONS (STRICT)
+## Naming
+
+- Folders: `snake_case`
+- DI file: `di.dart`
+- DI registration function: `register<FeatureName>Feature`
+
+## Public Entrypoints
+
+- `di.dart`: the only public feature DI entrypoint; `/lib/app/di/features_di.dart` imports and explicitly calls its `register<FeatureName>Feature` function
+- `presentation/routing.dart`: the public feature routing entrypoint used by global App routing
+- `domain/shared/*`: selected Domain exports for permitted cross-feature consumers
+- `infrastructure/shared/*`: selected Infrastructure exports for other features' Infrastructure layers
+- `presentation/shared/*`: selected Presentation exports for permitted cross-feature consumers
+
+## Forbidden
+
+- additional files at the feature root
+- direct imports of another feature's internal files

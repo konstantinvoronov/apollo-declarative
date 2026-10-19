@@ -1,20 +1,36 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/features/feature_name/presentation/controllers`
 
-/features/feature_name/presentation/controllers — Screen controlloer pure
+## SRP
 
-# Foldering structure and architecture limits and requirements and dependenscy
+Contains one Controller, Cubit, or Bloc for each screen. Controllers are the entrypoint for that screen's UI logic.
 
+## Allowed Direct Children
 
-## 2. Reponsobilities for this folder
+- none
 
-One per screen
-Naming: ScreenNameController / Cubit / Bloc
+## Allowed Files
 
-## 3. Rules Dependency limits:
+- `*_controller.dart`
+- `*_cubit.dart`
+- `*_bloc.dart`
 
-- Only entry point for UI logic
-- UI MUST NOT bypass controller
+## Naming
+
+- Files: `<screen_name>_controller.dart`, `<screen_name>_cubit.dart`, or `<screen_name>_bloc.dart`
+- Classes: `<ScreenName>Controller`, `<ScreenName>Cubit`, or `<ScreenName>Bloc`
+
+## Blueprint Required
+
+- no
+
+## Public Entrypoints
+
+- none
+
+## Forbidden
+
+- none beyond cumulative rules and the allow-lists above

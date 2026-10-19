@@ -1,20 +1,28 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/features/feature_name/data`
 
-/features/feature_name/data — Concrete implementations
+## SRP
 
-# Foldering structure and architecture limits and requirements and dependenscy
+Defines external data contracts and their mapping boundary. Data owns DTOs, mappings between DTOs and Domain representations, and interfaces that isolate individual external data services. It contains no concrete service integrations and does not implement Domain repositories.
 
-## 1. Reponsobilities for this folder
+## Allowed Direct Children
 
-- Implement domain contracts
-- Execute real logic
-- Integrate data layer
+- `dtos`
+- `mappers`
+- `data_sources`
 
-## 3. Rules Dependency limits:
+## Allowed Files
 
-- Can depend on: domain, data from this feature or app, shared, core 
-- Can be accessed only from presentation layer of this feature or /core/managers 
+- none
+
+## Naming
+
+- Folders: `snake_case`
+- Files and declarations follow the rules in the applicable child folder.
+
+## Public Entrypoints
+
+- none

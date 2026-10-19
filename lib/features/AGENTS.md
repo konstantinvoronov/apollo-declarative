@@ -1,24 +1,35 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/features`
 
-/features — Core App Logic
-when you create in new folder in /features code agent must check the blue pring /features/feature_name/ and follow all rules
-described there and referance it in all modifications inside other subfolders.
+## SRP
 
-# Foldering structure and architecture limits and requirements and dependenscy
+Contains feature-specific functionality as independent, isolated features. Cross-feature communication and coordination is performed by `/lib/core/managers`.
 
-Only one folder for the project.
+## Allowed Direct Children
 
-## 2. Reponsobilities for this folder
+- `<feature_name>`
 
-Contain ALL app-specific functionality. Each folder a future name. In each folders leave independed isolated different features
-inside lives fully modular feature-based structure
+## Allowed Files
 
-## 3. Rules Dependency limits:
+- none
 
-- Can depend on: common, shared, orchestration
-- MUST NOT depend directly on other features
-- No cross-feature repository access
+## Naming
+
+- Folders: `snake_case`
+- Each folder name describes one app feature.
+
+## Blueprint Required
+
+- yes: use `/lib/features/feature_name` according to the blueprint definition in `/lib/AGENTS.md`
+
+## Public Entrypoints
+
+- entrypoints explicitly allowed by the feature blueprint
+
+## Forbidden
+
+- direct imports from sibling features
+- cross-feature repository access

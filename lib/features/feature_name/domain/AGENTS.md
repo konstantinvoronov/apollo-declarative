@@ -1,31 +1,41 @@
 # AI Agents Guide (`AGENTS.md`)
 
-This file defines how agents MUST work with this folder and its subfolder or other folders with this name in the project.
+## Folder
 
-## Layer
+`/lib/features/feature_name/domain`
 
-/features/feature_name/domain — Pure Business Definition Layer
+## SRP
 
-# Foldering structure and architecture limits and requirements and dependenscy
+Contains this feature's Domain declarations, structures, and pure rules. Repository and use-case contracts live in their matching Domain folders, while Validators and Formatters are concrete, stateless Domain operations.
 
+## Allowed Direct Children
 
-## 2. Reponsobilities for this folder
+- `entities`
+- `formatters`
+- `models`
+- `params`
+- `repositories`
+- `services`
+- `shared`
+- `use_cases`
+- `validators`
 
-Contains contracts and structures for entities, interfaces, models, validators, repositories, use_cases
+## Allowed Files
 
-## 3. Rules Dependency limits:
+- none
 
-- Can not depend on anything except other features same domain lavel files specifically shared in domain/shared/layer/ folders
-- All files and subfolders can be accessible only within the this feature. Exceptions are files in /core/managers and files from folders specifically
-put in folder domain/shared/layer/* those are intentianally made available for others.
-- MUST NOT depend directly on other features
+## Naming
 
-- NO implementations
-- NO DTOs 
-- NO framework code
-- NO data layer dependencies
-- 
-- Only:
-interfaces
-abstract classes
-pure logic
+- Folders: `snake_case`
+
+## Public Entrypoints
+
+- entrypoints declared by child-folder rules
+
+## Forbidden
+
+- concrete repository implementations
+- concrete use-case implementations
+- DTOs
+- framework code
+- Data, Infrastructure, or Presentation dependencies
