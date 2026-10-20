@@ -1,3 +1,5 @@
+import 'domain/services/i_app_build_info_service.dart';
+import 'services/app_build_info_service.dart';
 import 'domain/services/i_shake_service.dart';
 import 'services/shake_service.dart';
 import 'domain/services/i_app_logger_service.dart';
@@ -12,6 +14,7 @@ import 'domain/repositories/i_app_settings_repository.dart';
 import 'infrastructure/repositories/app_settings_repository.dart';
 
 void registerCore(GetIt di) {
+  di.registerSingletonAsync<IAppBuildInfoService>(AppBuildInfoService.load);
   di.registerSingleton<IAppLoggerService>(AppLoggerService());
   di.registerLazySingleton<IAppHapticService>(() => AppHapticService());
   di.registerLazySingleton<IShakeService>(() => ShakeService());

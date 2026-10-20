@@ -2,7 +2,8 @@
   "apollo_welcome": {
     "title": "Apollo Declarative",
     "subtitle": "AI-driven development framework",
-    "tagline": "Declarative by design. Built for production."
+    "tagline": "Declarative by design. Built for production.",
+    "build_info": "Version {version} · Build {build}"
   },
   "hello_apollo": {
     "greeting": "Hello Apollo World"
