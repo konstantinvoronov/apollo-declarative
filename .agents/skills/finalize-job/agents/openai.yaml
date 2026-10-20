@@ -1,0 +1,4 @@
+interface:
+  display_name: "Finalize Job"
+  short_description: "Audit project compliance before completion"
+  default_prompt: "Use $finalize-job to verify this job against project architecture, documentation, diagnostics, and commit requirements."

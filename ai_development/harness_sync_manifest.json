@@ -1,0 +1,136 @@
+{
+  "version": 1,
+  "shared": [
+    {
+      "path": ".agents/skills/check-declarative-rules/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/check-declarative-rules/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/check-naming/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/check-naming/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/check-responsibility-leaks/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/check-responsibility-leaks/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/finalize-job/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/finalize-job/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/maintain-ai-harness/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/maintain-ai-harness/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/pattern-keeper/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/pattern-keeper/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/resolve-declarative-responsibilities/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/resolve-declarative-responsibilities/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/task-decomposer/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/task-decomposer/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/update-diagnostic-spec/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/update-diagnostic-spec/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/violation/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/violation/agents/openai.yaml"
+    },
+    {
+      "path": "lib/libs/AGENTS.md"
+    },
+    {
+      "path": "lib/shared/AGENTS.md"
+    },
+    {
+      "path": "lib/features/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/presentation/controllers/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/presentation/AGENTS.md"
+    },
+    {
+      "path": "lib/app/di/AGENTS.md"
+    },
+    {
+      "path": "lib/core/services/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/domain/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/data/AGENTS.md"
+    },
+    {
+      "path": "lib/features/feature_name/infrastructure/AGENTS.md"
+    },
+    {
+      "path": "lib/core/flows/AGENTS.md"
+    },
+    {
+      "path": "lib/core/AGENTS.md"
+    },
+    {
+      "path": "ai_development/ai_harness.md"
+    },
+    {
+      "path": "ai_development/declarative_foldering_rules.md"
+    },
+    {
+      "path": "ai_development/sync_harness.py"
+    },
+    {
+      "path": "ai_development/harness_sync_manifest.json"
+    },
+    {
+      "path": "lib/local_template.md"
+    },
+    {
+      "path": ".agents/skills/context-checker/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/context-checker/agents/openai.yaml"
+    },
+    {
+      "path": ".agents/skills/human-developer-helper/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/human-developer-helper/agents/openai.yaml"
+    },
+    {
+      "path": "lib/AGENTS.md",
+      "start_marker": "<!-- shared-ai-harness:start -->",
+      "end_marker": "<!-- shared-ai-harness:end -->"
+    }
+  ]
+}

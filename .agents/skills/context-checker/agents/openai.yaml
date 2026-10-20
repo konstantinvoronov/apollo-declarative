@@ -1,0 +1,4 @@
+interface:
+  display_name: "Context Checker"
+  short_description: "Audit task context for missing rules and excess"
+  default_prompt: "Use $context-checker to independently review whether this task's context is complete, relevant, and correctly scoped, distinguishing verified evidence from unknowns."

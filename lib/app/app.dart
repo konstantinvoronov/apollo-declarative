@@ -1,11 +1,11 @@
 import 'app_bootstrap.dart';
 import 'routing/app_router.dart';
 import 'config/app_conf.dart';
-import 'package:ai_declarative_foldering_architecture/libs/app_uikit/shared/widgets/app_uiscale.dart';
+import '../libs/uikit/core/presentation/widgets/app_uiscale.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
-import '../libs/app_uikit/shared/presentation/app_theme.dart';
+import '../libs/uikit/core/presentation/models/themes/app_theme.dart';
 import 'di.dart';
 
 class AppWidget extends StatelessWidget {
@@ -14,7 +14,7 @@ class AppWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-        theme: AppTheme.dark, // TODO return back later AppTheme.light,
+        theme: AppTheme.light, // TODO return back later AppTheme.light,
         darkTheme: AppTheme.dark,
         themeMode: ThemeMode.system,
         locale: context.locale,

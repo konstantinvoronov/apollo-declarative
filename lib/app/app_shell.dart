@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ai_declarative_foldering_architecture/libs/app_uikit/app/consts/app_sizes.dart';
+import '../libs/uikit/core/presentation/models/layout/app_sizes.dart';
 
 class AppShell extends StatelessWidget {
   final Widget child;

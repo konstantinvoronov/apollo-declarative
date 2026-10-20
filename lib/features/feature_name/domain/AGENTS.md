@@ -6,7 +6,7 @@
 
 ## SRP
 
-Contains this feature's Domain declarations, structures, and pure rules. Repository and use-case contracts live in their matching Domain folders, while Validators and Formatters are concrete, stateless Domain operations.
+Contains this feature's Domain declarations, structures, and pure rules. Repository and use-case contracts live in their matching Domain folders. Validators include pure, stateless operations and pure abstract validation bases; Formatters remain concrete, stateless Domain operations.
 
 ## Allowed Direct Children
 

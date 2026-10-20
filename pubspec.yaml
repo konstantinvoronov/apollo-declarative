@@ -45,6 +45,11 @@ dependencies:
   stateful_data: ^1.0.7
   path_provider: ^2.1.6
   go_router: ^17.5.0
+  bloc: ^9.2.1
+  flutter_bloc: ^9.1.1
+  equatable: ^3.0.0
+  flutter_svg: ^2.3.0
+  vector_graphics: ^1.2.3
 
 dev_dependencies:
   flutter_test:
@@ -56,6 +61,16 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  build_runner: ^2.15.1
+  flutter_gen_runner: ^5.15.0
+
+flutter_gen:
+  output: lib/core/presentation/models/
+  integrations:
+    flutter_svg: true
+  assets:
+    exclude:
+      - assets/translations/**
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -69,6 +84,11 @@ flutter:
   uses-material-design: true
   assets:
     - assets/translations/
+    - assets/images/back.svg
+    - assets/images/apollo_welcome.webp
+    - assets/images/apollo_background.webp
+    - assets/images/apollo_welcome_light.webp
+    - assets/images/apollo_welcome_dark.webp
 
   # To add assets to your application, add an assets section, like this:
   # assets:

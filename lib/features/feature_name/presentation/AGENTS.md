@@ -11,6 +11,8 @@ Contains this feature's user interface and Presentation coordination.
 ## Allowed Direct Children
 
 - `controllers`
+- `models`
+- `mixins`
 - `sheets`
 - `screens`
 - `widgets`
@@ -44,7 +46,7 @@ Same-feature flow access remains internal. Cross-feature access is through `shar
 ## May Be Imported By
 
 - /lib/features/feature_name
-- /lib/app
+- /lib/app/routing
 - /lib/features/feature_name/presentation/flows
 - /lib/features/*
 

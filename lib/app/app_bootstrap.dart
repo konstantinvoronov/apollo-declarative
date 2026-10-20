@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../shared/assets/assets.gen.dart';
-import 'app.dart';
-
 class AppBootstrap extends StatefulWidget {
   final Widget child;
 
@@ -22,7 +19,6 @@ class _AppBootstrapState extends State<AppBootstrap> {
 
   Future<void> _initAsync() async {
     WidgetsBinding.instance.addPostFrameCallback((_) async {
-      await precacheImage(Assets.images.launchFootballPlayer.provider(), context);
       if (mounted) setState(() => _ready = true);
     });
   }
@@ -32,8 +28,8 @@ class _AppBootstrapState extends State<AppBootstrap> {
     if (!_ready) {
       return const MaterialApp(
         home: Scaffold(
-          backgroundColor: Colors.black,
-          body: Center(child: CircularProgressIndicator()),
+          backgroundColor: Colors.white,
+          body: Center(child: CircularProgressIndicator(color: Color(0xFF2563EB))),
         ),
       );
     }

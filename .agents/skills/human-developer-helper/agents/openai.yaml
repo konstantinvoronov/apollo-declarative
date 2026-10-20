@@ -1,0 +1,4 @@
+interface:
+  display_name: "Human Developer Helper"
+  short_description: "Explain the current stage, next step, and why"
+  default_prompt: "Use $human-developer-helper to explain where we are, the direct next step, and why it follows."

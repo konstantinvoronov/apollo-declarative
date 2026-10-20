@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Responsibility Leaks"
+  short_description: "Detect behavior implemented in the wrong layer"
+  default_prompt: "Use $check-responsibility-leaks to inspect changed methods and objects for responsibilities leaking across architectural boundaries."
