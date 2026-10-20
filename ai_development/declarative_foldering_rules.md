@@ -32,7 +32,7 @@ Library names establish ownership, not a new architecture. The architectural pat
 
 Shared adaptations preserve the architectural meaning of the path being adapted. Unchanged library source needs neither a Shared copy nor a mandatory project re-export.
 
-Reusable libraries may depend on each other when the participating architectural paths permit it in both directions. Reusable libraries must not depend on project wiring.
+Libraries may depend on each other and on project App or Core when the participating architectural paths permit it in both directions. Library ownership does not itself prohibit these dependencies or grant blanket access: scope, layer, responsibility, and public-entrypoint rules still apply. Library Domain may consume permitted Core Domain declarations, not App wiring. Library Presentation may consume App routing and DI through permitted entrypoints. A library that consumes project App or Core is project-coupled; that is an accepted dependency, not automatically an architectural violation.
 
 ## 2. Layers and Responsibilities Within a Scope
 
@@ -44,7 +44,8 @@ Reusable libraries may depend on each other when the participating architectural
 │   ├── params/
 │   ├── repositories/       repository interfaces
 │   ├── use_cases/          use-case interfaces
-│   └── services/           service interfaces
+│   ├── services/           service interfaces
+│   └── validators/         pure validation operations and abstract bases
 ├── data/
 │   ├── dtos/
 │   ├── mappers/
@@ -55,7 +56,9 @@ Reusable libraries may depend on each other when the participating architectural
 │   ├── repositories/       repository implementations
 │   └── use_cases/          use-case implementations
 └── presentation/
-    ├── controllers/
+    ├── controllers/        Controllers, Cubits/Blocs, and companion States
+    ├── models/             Presentation values
+    ├── mixins/             UI interaction support
     ├── sheets/
     ├── screens/            pages
     └── widgets/
@@ -74,6 +77,7 @@ Create only the folders needed by the responsibility being implemented. This str
 | `domain/repositories` | Repository interfaces, not persistence implementations |
 | `domain/use_cases` | Use-case interfaces |
 | `domain/services` | Service interfaces, not concrete integrations |
+| `domain/validators` | Pure, stateless validation operations and pure abstract Validator bases |
 | `data/dtos` | External data representations |
 | `data/mappers` | Representation conversion between DTOs and Domain values |
 | `data/data_sources` | Data-source interfaces |
@@ -81,8 +85,14 @@ Create only the folders needed by the responsibility being implemented. This str
 | `infrastructure/data_sources` | Concrete external data integrations |
 | `infrastructure/repositories` | Implementations of Domain repository contracts |
 | `infrastructure/use_cases` | Implementations of Domain use-case contracts |
-| `presentation/controllers` | Per-screen UI logic |
+| `presentation/controllers` | Per-screen UI logic and companion State declarations |
+| `presentation/models` | Presentation values and representations, including theme and sizing values |
+| `presentation/mixins` | Reusable Presentation interaction behavior |
 | `presentation/screens`, `presentation/sheets`, `presentation/widgets` | UI rendering and interaction through the designated Controller |
+
+Controller, Cubit, and Bloc state companions may live alongside their owner in `presentation/controllers` as `<screen_name>_state.dart`, named `<ScreenName>State`. These are Presentation declarations, not Domain models.
+
+Pure abstract Validator bases may define the `validate` contract in `domain/validators`; concrete Validators implement pure validation operations. Neither kind owns mutable state, I/O, or service access. Presentation models and mixins follow their owning Presentation scope and layer. These additions do not change dependency directions, public entrypoints, consumer visibility, or external-package permissions.
 
 Interfaces belong under their architectural responsibility, not in a generic `interfaces` collection. A Repository contract and Repository implementation have the same role but different layers and implementation kinds.
 
@@ -194,3 +204,11 @@ Legacy dependency prose must be reviewed explicitly before conversion. Do not si
 This document is an architecture contract, not authorization to move or rewrite source. Existing code and guides must be reviewed against it; valid placement alone does not prove valid dependencies or behavior.
 
 Contradictory legacy rules, including a blanket prohibition on Feature Domain consuming Core Domain, must be identified and reconciled rather than copied as general defaults. Do not add extra guides to reproduce a missing or conflicting general rule.
+
+## 8. Image Asset Formats
+
+Prefer SVG for suitable vector artwork such as icons and simple illustrations. Prefer WebP instead of PNG or JPEG for raster images wherever the consuming platform and tooling support it. Use PNG or JPEG when a required consumer cannot use SVG/WebP, including native asset pipelines where their required format must be preserved.
+
+## 9. Scoped Implementation Patterns
+
+Follow the catalog discovery, cumulative subtree overrides, and finalization/maintenance separation in [AI Harness](ai_harness.md). The project-wide catalog is /ai_development/patterns.md. Optional patterns.md coding contracts may live in any folder alongside source; their presence does not require an AGENTS.md or override unrelated inherited rules. No catalog is required for every folder. These files do not change architectural layer or dependency boundaries.

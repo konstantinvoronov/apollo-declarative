@@ -1,0 +1,6 @@
+interface:
+  display_name: "Maintain AI Harness"
+  short_description: "Review harness rules and process violation evidence"
+  default_prompt: "Use $maintain-ai-harness to review this project's AI instructions and help me process recorded violations into approved patterns."
+policy:
+  allow_implicit_invocation: false

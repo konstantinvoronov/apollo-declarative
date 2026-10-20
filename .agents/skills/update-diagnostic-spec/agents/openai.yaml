@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update Diagnostic Spec"
+  short_description: "Align feature diagnostics and log verification"
+  default_prompt: "Use $update-diagnostic-spec to align the affected feature diagnostic specification with project logging patterns and observable edge cases."

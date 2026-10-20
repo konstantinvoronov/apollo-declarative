@@ -29,6 +29,7 @@ App initialization / Dependency Injection (DI) / Routing / Session/bootstrap log
 - /lib
 - /lib/app/*
 - /lib/shared/*
+- /lib/libs/*
 - /lib/core/flows
 
 ## Forbidden

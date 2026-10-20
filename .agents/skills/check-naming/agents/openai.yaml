@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Naming"
+  short_description: "Guard responsibility-based project naming"
+  default_prompt: "Use $check-naming to audit changed names against project conventions and the real responsibilities of their declarations."

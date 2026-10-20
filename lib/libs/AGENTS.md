@@ -30,5 +30,5 @@ Unchanged reusable source may be imported directly when its architectural layer 
 ## Forbidden
 
 - modifying protected source without explicit approval
-- dependencies on project App, feature implementations, or project wiring
+- dependencies on feature implementations
 - importing protected `shared` blueprints directly into production code

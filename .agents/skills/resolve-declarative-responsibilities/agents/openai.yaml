@@ -1,0 +1,4 @@
+interface:
+  display_name: "Resolve Declarative Responsibilities"
+  short_description: "Resolve intended role and dependency boundaries"
+  default_prompt: "Use $resolve-declarative-responsibilities to resolve the designed responsibility profile for this object."

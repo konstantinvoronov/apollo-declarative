@@ -1,0 +1,4 @@
+interface:
+  display_name: "Check Declarative Rules"
+  short_description: "Audit changes against project folder rules"
+  default_prompt: "Use $check-declarative-rules to audit the current changes against all applicable declarative architecture rules."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Pattern Keeper"
+  short_description: "Supervise code against scoped project patterns"
+  default_prompt: "Use $pattern-keeper to check this uncommitted job against applicable patterns and require any needed corrections."
