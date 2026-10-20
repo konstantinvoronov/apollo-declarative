@@ -4,7 +4,14 @@ import 'package:flutter/material.dart';
 import '../models/assets.gen.dart';
 
 class ApolloWelcome extends StatelessWidget {
-  const ApolloWelcome({super.key});
+  final String version;
+  final String buildNumber;
+
+  const ApolloWelcome({
+    super.key,
+    required this.version,
+    required this.buildNumber,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -51,6 +58,17 @@ class ApolloWelcome extends StatelessWidget {
                   context.tr('apollo_welcome.tagline'),
                   textAlign: TextAlign.center,
                   style: theme.textTheme.bodyMedium?.copyWith(
+                    color: theme.colorScheme.onSurfaceVariant,
+                  ),
+                ),
+                const SizedBox(height: 8),
+                Text(
+                  context.tr(
+                    'apollo_welcome.build_info',
+                    namedArgs: {'version': version, 'build': buildNumber},
+                  ),
+                  textAlign: TextAlign.center,
+                  style: theme.textTheme.bodySmall?.copyWith(
                     color: theme.colorScheme.onSurfaceVariant,
                   ),
                 ),

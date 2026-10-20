@@ -75,7 +75,10 @@ class HelloApolloScreen extends StatelessWidget
             ),
           ),
         ],
-        child: const ApolloWelcome(),
+        child: ApolloWelcome(
+          version: state.version,
+          buildNumber: state.buildNumber,
+        ),
       ),
     );
   }

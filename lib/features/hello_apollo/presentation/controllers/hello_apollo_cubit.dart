@@ -3,10 +3,18 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
+import '../../../../core/domain/services/i_app_build_info_service.dart';
+
 part 'hello_apollo_state.dart';
 
 class HelloApolloCubit extends Cubit<HelloApolloState> {
-  HelloApolloCubit() : super(HelloApolloState.initial());
+  HelloApolloCubit(IAppBuildInfoService buildInfo)
+    : super(
+        HelloApolloState.initial(
+          version: buildInfo.version,
+          buildNumber: buildInfo.buildNumber,
+        ),
+      );
 
   void clearUnhandledError(HelloApolloErrorType? err) {
     emit(
