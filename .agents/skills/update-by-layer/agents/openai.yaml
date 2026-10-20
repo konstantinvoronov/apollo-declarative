@@ -1,0 +1,4 @@
+interface:
+  display_name: "Update by Layer"
+  short_description: "Explain changed files by layer and responsibility"
+  default_prompt: "Use $update-by-layer to explain changes from the latest task or this conversation, grouped by architectural layer and responsibility, including object names, affected files, and generated updates."

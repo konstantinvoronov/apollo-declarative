@@ -398,6 +398,12 @@ Cleanup verification: all seven backup files match their removed originals exact
 
 ## Next Decision
 
+### Approval safeguard simplified after developer correction
+
+The developer also approved a short resolver trigger: before introducing an object or changing its responsibility, use the project-local resolver to check role, name, layer, placement, and dependency boundaries. Recorded the separately approved per-file protection for AGENTS.md changes, including synchronized copies. Both rules live in the existing shared harness; no additional AGENTS file edits or skill procedures were required.
+
+The developer rejected the newly added full pre-edit planning procedure as overcomplicated. Replaced it with a short early warning: when a small request needs multiple files, more than a few local lines, or changes across layers, explain the expansion, name affected layers/folders/files, and ask approval. Removed the added mandatory resolution-record and file-plan audit procedure; existing architecture checks remain. main.dart stays frozen without separate direct approval of its exact change. This supersedes the broader gate described in the historical rollback entry below. No application code was changed by this correction.
+
 ### Version/build implementation withdrawn for an approval-gated retry
 
 The developer authorized removing only the version/build display implementation while preserving earlier work. Removed the metadata display and translation key, AppBuildInfo value, its Cubit/State injection, startup PackageInfo read, and metadata arguments through App/Core DI. The localized centered greeting, artwork and themes, controller status/error handling, layout wrappers, routing, and snackbar DI remain. Removed package_info_plus and regenerated dependency/plugin records; the lockfile comparison against the pre-rollback snapshot confirms only package_info_plus, package_info_plus_platform_interface, and win32 were removed, with no other package changes. The original main.dart content is restored exactly to its committed version.
