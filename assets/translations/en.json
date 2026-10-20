@@ -6,6 +6,18 @@
     "build_info": "Version {version} · Build {build}"
   },
   "hello_apollo": {
-    "greeting": "Hello Apollo World"
+    "greeting": "Hello Apollo World",
+    "sheets": {
+      "open_legacy": "Legacy sheet",
+      "open_alternative": "Alternative sheet",
+      "title": "Apollo bottom-sheet example",
+      "description": "Scroll the content while the actions stay visible. Confirm to return a result, or cancel to close the sheet.",
+      "item": "Example item {number}",
+      "confirm": "Confirm",
+      "cancel": "Cancel",
+      "result_none": "Open a sheet to try it",
+      "result_confirmed": "Sheet confirmed",
+      "result_cancelled": "Sheet cancelled"
+    }
   }
 }

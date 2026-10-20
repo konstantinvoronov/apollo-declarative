@@ -24,4 +24,14 @@ class HelloApolloCubit extends Cubit<HelloApolloState> {
       ),
     );
   }
+
+  void recordSheetResult(bool? result) {
+    emit(
+      state.copyWith(
+        sheetResult: result == true
+            ? HelloApolloSheetResult.confirmed
+            : HelloApolloSheetResult.cancelled,
+      ),
+    );
+  }
 }

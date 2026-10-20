@@ -18,6 +18,7 @@ App initialization / Dependency Injection (DI) / Routing / Session/bootstrap log
 
 ## Public Entrypoints
 
+- Feature Presentation accesses App through `/lib/app/di.dart` for dependency resolution and `/lib/app/routing/app_router.dart` for navigation. Other feature layers follow their existing dependency boundaries. Registration helpers retain their private wiring scope.
 - Project imports use permitted DI, routing, and Domain entrypoints; the global DI and helper restrictions below remain narrower.
 - App initialization and routing may import permitted library Service entrypoints directly or use existing project-facing Service entrypoints under `/lib/core/services`, subject to the applicable layer and dependency rules.
 - `/lib/app/di.dart` is narrower: it may import only Dart SDK, `get_it`, and files declared by `/lib/app/di/AGENTS.md`.
@@ -30,6 +31,7 @@ App initialization / Dependency Injection (DI) / Routing / Session/bootstrap log
 - /lib/app/*
 - /lib/shared/*
 - /lib/libs/*
+- /lib/features/*
 - /lib/core/flows
 
 ## Forbidden
