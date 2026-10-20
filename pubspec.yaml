@@ -51,6 +51,9 @@ dependencies:
   equatable: ^3.0.0
   flutter_svg: ^2.3.0
   vector_graphics: ^1.2.3
+  modal_bottom_sheet: 3.0.0
+  sheet:
+    path: packages/sheet
 
 dev_dependencies:
   flutter_test:
