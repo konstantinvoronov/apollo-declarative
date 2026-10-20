@@ -3,7 +3,7 @@
 <!-- shared-ai-harness:start -->
 ## Project-Local Harness
 
-Follow `/ai_development/ai_harness.md`. Execute skills from this project's `.agents/skills`, not a sibling repository. Before edits, follow its task-scope and approval gate: resolve necessary layers and responsibilities, propose exact files and intended changes, and obtain approval. `lib/main.dart` is frozen unless the developer separately approves its exact change. At finalization, verify approved scope, use the local pattern keeper, and collect unprocessed user-declared violations before the final read-only audits. Pattern catalogs inherit cumulatively with specific subtree overrides; do not preload unrelated catalogs or create one per folder. Harness maintenance is developer-invoked only.
+Follow `/ai_development/ai_harness.md`. Execute skills from this project's `.agents/skills`, not a sibling repository. Follow its early scope-expansion warning, not a full planning procedure for every edit. `lib/main.dart` remains frozen without separate direct approval of its exact change. At finalization, use the local pattern keeper and collect unprocessed user-declared violations before the final read-only audits. Pattern catalogs inherit cumulatively with specific subtree overrides; do not preload unrelated catalogs or create one per folder. Harness maintenance is developer-invoked only.
 <!-- shared-ai-harness:end -->
 
 ## Declarative Foldering Authority

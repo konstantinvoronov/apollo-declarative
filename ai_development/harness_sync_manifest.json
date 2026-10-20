@@ -128,6 +128,12 @@
       "path": ".agents/skills/human-developer-helper/agents/openai.yaml"
     },
     {
+      "path": ".agents/skills/update-by-layer/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/update-by-layer/agents/openai.yaml"
+    },
+    {
       "path": "lib/AGENTS.md",
       "start_marker": "<!-- shared-ai-harness:start -->",
       "end_marker": "<!-- shared-ai-harness:end -->"

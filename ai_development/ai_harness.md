@@ -8,19 +8,23 @@ Common harness definitions are synchronized by `ai_development/sync_harness.py` 
 
 ## Evidence-to-claim discipline
 
+Write and update files using concise, affirmative language that states intended behavior through clear actions, responsibilities, and approval conditions while preserving each rule's meaning.
+
 Distinguish existence, dependency compatibility, architectural permission, and runtime verification. Never summarize a failure in one category as a failure in another. State the observed fact separately from the proposed action. “Not found” requires a scoped search and means not found within that scope; “not checked” means unknown. Existing code with unresolved dependencies is not missing code, and a dependency problem alone does not justify replacing its behavior.
 
-## Task scope and approval before edits
+Trial rule: Reading a skill is not performing its check; report an evidence-based result for the affected code or state that the check was not performed.
 
-Before implementation, state the requested outcome and the minimum necessary architectural scopes and layers. Propose every file to create, modify, or delete, with its intended change and reason, including dependency, generated-file, and verification effects. Keep the plan concise; an architectural role or a convenient implementation path does not prove that the task needs it.
+## Notice when a small fix becomes larger
 
-Use the project-local `resolve-declarative-responsibilities` for proposed new objects and affected responsibility or dependency boundaries before editing. Report scope, layer, role, naming, and both dependency directions with their controlling rules. Record that resolution in the proposal; resolving an object after implementing it is not evidence of a pre-edit check. Unresolved declarations require a developer decision, not invented permission.
+Before editing, recognize when a requested small fix needs multiple files, more than a few local lines, or changes across architectural layers. Briefly explain why it is larger, name the affected layers, folders, and files, and ask approval before proceeding. Do not add a full planning procedure for tiny local fixes; existing architecture and approval rules still apply.
 
-Obtain explicit developer approval of the proposed file-and-change scope before implementation. Approval of the requested outcome alone is not approval of an unpresented implementation. If another file, layer, dependency, or materially different change becomes necessary, stop and request approval of the amended scope. Do not request the same approval again while implementing the unchanged approved scope. Read-only investigation may precede approval.
+Before introducing a new object or changing an existing object's responsibility, use the project-local `resolve-declarative-responsibilities` to check its role, name, layer, placement, and dependency boundaries. Do not choose a folder first and use that choice to justify the object afterward.
 
-`lib/main.dart` is frozen by default. Do not edit, reformat, regenerate, or delete it as an ordinary implementation step. Startup ownership does not unlock it. A significant need must first be brought to the developer for a separate decision naming the file and exact intended change; only direct approval of that change unlocks it. Generic task approval does not suffice.
+Trial rule: Before listing affected files, explain the solution's principal architectural responsibility and its owning scope and layer. For any new object or changed responsibility, show the proposed role, name, and exact path, validated with the resolver; otherwise identify what existing object will be reused. Supporting DI, controller, and screen edits do not substitute for this architectural explanation.
 
-Before handoff, compare the actual task changes with the approved file-and-change scope, separately from architectural compliance and runtime verification. Include new, deleted, dependency, and generated files; distinguish pre-existing changes. Report missing approval or pre-edit resolution evidence as unverified or blocked, never as a pass inferred from valid placement or a clean analyzer.
+`lib/main.dart` remains frozen regardless of change size; modifying it requires separate direct approval of the exact change.
+
+Changes to any `AGENTS.md` require explicit approval for that specific file, including synchronized copies.
 
 ## Scoped pattern catalogs
 
