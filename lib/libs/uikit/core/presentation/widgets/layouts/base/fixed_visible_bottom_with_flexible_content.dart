@@ -19,6 +19,8 @@ class FixedVisibleBottomLayoutWithFlexibleContent extends AppTwoVisibleAreasLayo
 
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       children: [
         Flexible(
           child: Padding(padding: padding?.insets ?? EdgeInsets.symmetric(horizontal: appSizes.horizontalPaddingDialog),
@@ -35,6 +37,8 @@ class FixedVisibleBottomLayoutWithFlexibleContent extends AppTwoVisibleAreasLayo
   Widget buildBottom() {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       children: [
         ...bottomChildren ?? [],
       ],);
@@ -44,6 +48,7 @@ class FixedVisibleBottomLayoutWithFlexibleContent extends AppTwoVisibleAreasLayo
     return child ?? Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: mainAxisAlignment,
+      crossAxisAlignment: crossAxisAlignment,
       children: children??[],);
   }
 

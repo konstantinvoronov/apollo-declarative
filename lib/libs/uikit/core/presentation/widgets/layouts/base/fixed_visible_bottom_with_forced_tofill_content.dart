@@ -38,6 +38,7 @@ class FixedVisibleBottomLayoutWithForcedToFillContent extends AppTwoVisibleAreas
       crossAxisAlignment: crossAxisAlignment,
       children: [
       ...bottomChildren ?? [],
+      const SizedBox(height: AppSizes.gap4x),
     ],));
   }
 

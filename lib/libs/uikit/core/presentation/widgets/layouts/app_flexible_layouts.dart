@@ -1,6 +1,9 @@
 import '../../models/layout/app_sizes.dart';
 import '../app_element.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
+
+import '../smart_refresher_widget.dart';
 
 part './base/fixed_overlaying_visible_bottom_over_scrollable_content.dart';
 part './base/fixed_visible_bottom_with_flexible_content.dart';
@@ -8,6 +11,7 @@ part './base/fixed_visible_bottom_with_forced_tofill_content.dart';
 part './base/fixed_visible_bottom_with_resized_content.dart';
 part './base/fixed_visible_bottom_with_scrollable_content.dart';
 part './base/fixed_visible_bottom_with_scrollable_expanded_content.dart';
+part './base/fixed_visible_bottom_with_scrollable_expanded_content_with_refresher.dart';
 part './base/keybard_and_content_sections.dart';
 
 /*
@@ -114,6 +118,21 @@ sealed class AppFlexibleLayouts extends StatelessWidget implements AppElement {
     ScrollController? controller,
   }) = FixedVisibleBottomLayoutWithScrollableExpandedContent;
 
+  /// Fixed bottom with refreshable scrollable content and optional slivers.
+  const factory AppFlexibleLayouts.fixedVisibleBottomLayoutWithScrollableExpandedContentWithRefresher({
+    Key? key,
+    Widget? child,
+    List<Widget>? children,
+    List<Widget> slivers,
+    required RefreshController refreshController,
+    List<Widget>? bottomChildren,
+    AppLayoutPaddings? padding,
+    bool reversedSliver,
+    bool enablePullUp,
+    ScrollController? controller,
+    VoidCallback? onRefresh,
+  }) = FixedVisibleBottomLayoutWithScrollableExpandedContentWithRefresher;
+
   /// Keyboard + content sections layout
   factory AppFlexibleLayouts.KeybardAndContentSections({
     Key? key,
@@ -169,6 +188,8 @@ enum AppLayoutPaddings {
   largeBottom(0,0,0,AppSizes.gap6x),
 
   /// размер для AppModalSheet заголовка
+  skillSheet(AppSizes.gap4x,AppSizes.gap2x,AppSizes.gap4x,0),
+  skillBottomSheet(AppSizes.gap4x,AppSizes.gap2x,AppSizes.gap4x,AppSizes.gap6x),
   smallSheet(AppSizes.gap4x,AppSizes.gap2x,AppSizes.gap4x,AppSizes.gap6x,),
   mediumSheet(0,0,0,AppSizes.gap4x),
   largeSheet(0,0,0,AppSizes.gap6x),
