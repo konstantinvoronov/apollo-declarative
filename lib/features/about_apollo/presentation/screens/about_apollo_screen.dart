@@ -12,15 +12,15 @@ import '../../../../libs/uikit/core/presentation/widgets/layouts/app_flexible_la
 import '../../../../libs/uikit/core/presentation/widgets/text/styles_extension.dart';
 import '../../../../shared/core/presentation/mixins/app_handle_failure_mixin.dart';
 import '../../../../shared/core/presentation/widgets/layouts/app_screens_layouts_extension.dart';
-import '../controllers/hello_apollo_cubit.dart';
+import '../controllers/about_apollo_cubit.dart';
 import '../models/bottom_sheet_example_params.dart';
 
-class HelloApolloScreen extends StatelessWidget
+class AboutApolloScreen extends StatelessWidget
     with EventOnSuccess<bool>, AppHandleFailure {
-  final HelloApolloCubit Function() createCubit;
+  final AboutApolloCubit Function() createCubit;
   final AppOnSuccess<bool>? onSuccess;
 
-  const HelloApolloScreen({
+  const AboutApolloScreen({
     super.key,
     required this.createCubit,
     this.onSuccess,
@@ -31,10 +31,10 @@ class HelloApolloScreen extends StatelessWidget
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<HelloApolloCubit>(
+    return BlocProvider<AboutApolloCubit>(
       create: (_) => createCubit(),
       child: Builder(
-        builder: (ctx) => BlocConsumer<HelloApolloCubit, HelloApolloState>(
+        builder: (ctx) => BlocConsumer<AboutApolloCubit, AboutApolloState>(
           builder: mainBuilder,
           listener: mainListener,
         ),
@@ -42,14 +42,14 @@ class HelloApolloScreen extends StatelessWidget
     );
   }
 
-  void mainListener(BuildContext context, HelloApolloState state) {
-    final cubit = context.read<HelloApolloCubit>();
+  void mainListener(BuildContext context, AboutApolloState state) {
+    final cubit = context.read<AboutApolloCubit>();
 
     for (var error in state.errors.entries) {
       // validation error processed in ui
       if (error.value is ValidationFailure) continue;
       switch (error.key) {
-        case HelloApolloErrorType.unhandledError:
+        case AboutApolloErrorType.unhandledError:
           final failure = error.value;
           uiFailureHandler(
             context: context,
@@ -63,40 +63,43 @@ class HelloApolloScreen extends StatelessWidget
     }
   }
 
-  Widget mainBuilder(BuildContext context, HelloApolloState state) {
+  Widget mainBuilder(BuildContext context, AboutApolloState state) {
     return AppScreenLayouts.appBasicScreen(
       child: AppFlexibleLayouts.FixedVisibleBottomLayoutWithForcedToFillContent(
         padding: AppLayoutPaddings.zero,
         paddingBottom: AppLayoutPaddings.zero,
         bottomChildren: [
-          Wrap(
-            alignment: WrapAlignment.center,
-            children: [
-              TextButton(
-                onPressed: () => openSheet(context, '/hello-apollo/legacy-sheet'),
-                child: 'hello_apollo.sheets.open_legacy'.tr().p4(),
-              ),
-              TextButton(
-                onPressed: () =>
-                    openSheet(context, '/hello-apollo/alternative-sheet'),
-                child: 'hello_apollo.sheets.open_alternative'.tr().p4(),
-              ),
-            ],
+          Center(
+            child: Wrap(
+              alignment: WrapAlignment.center,
+              children: [
+                TextButton(
+                  onPressed: () =>
+                      openSheet(context, '/about-apollo/legacy-sheet'),
+                  child: 'about_apollo.sheets.open_legacy'.tr().p4(),
+                ),
+                TextButton(
+                  onPressed: () =>
+                      openSheet(context, '/about-apollo/alternative-sheet'),
+                  child: 'about_apollo.sheets.open_alternative'.tr().p4(),
+                ),
+              ],
+            ),
           ),
           Center(
             child: switch (state.sheetResult) {
-              HelloApolloSheetResult.none =>
-                'hello_apollo.sheets.result_none'.tr().p4(),
-              HelloApolloSheetResult.confirmed =>
-                'hello_apollo.sheets.result_confirmed'.tr().p4(),
-              HelloApolloSheetResult.cancelled =>
-                'hello_apollo.sheets.result_cancelled'.tr().p4(),
+              AboutApolloSheetResult.none =>
+                'about_apollo.sheets.result_none'.tr().p4(),
+              AboutApolloSheetResult.confirmed =>
+                'about_apollo.sheets.result_confirmed'.tr().p4(),
+              AboutApolloSheetResult.cancelled =>
+                'about_apollo.sheets.result_cancelled'.tr().p4(),
             },
           ),
           Padding(
             padding: const EdgeInsets.all(16),
             child: Center(
-              child: 'hello_apollo.greeting'.tr().p4(
+              child: 'about_apollo.greeting'.tr().p4(
                 textAlign: TextAlign.center,
               ),
             ),
@@ -105,6 +108,7 @@ class HelloApolloScreen extends StatelessWidget
         child: ApolloWelcome(
           version: state.version,
           buildNumber: state.buildNumber,
+          onVersionTap: context.read<AboutApolloCubit>().onVersionTap,
         ),
       ),
     );
@@ -118,6 +122,6 @@ class HelloApolloScreen extends StatelessWidget
       ),
     );
     if (!context.mounted) return;
-    context.read<HelloApolloCubit>().recordSheetResult(result);
+    context.read<AboutApolloCubit>().recordSheetResult(result);
   }
 }

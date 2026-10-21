@@ -19,7 +19,7 @@ class AppLoggerService implements IAppLoggerService {
 
   // Single sink + queue to serialize writes
   IOSink? _sink;
-  final _queue = StreamController<String>();
+  final _queue = StreamController<FutureOr<void> Function()>();
   final _initCompleter = Completer<void>();
 
   final Map<String, DateTime> _benchmarks = {};
@@ -58,9 +58,9 @@ class AppLoggerService implements IAppLoggerService {
       await _crashFlagFile!.writeAsString('UNCLEAN', flush: true);
 
       _sink = _logFile!.openWrite(mode: FileMode.append);
-      _queue.stream.listen((line) {
-        _sink!.write(line);
-      });
+      _queue.stream.asyncMap((operation) async {
+        await operation();
+      }).listen((_) {});
 
       _initCompleter.complete();
     } catch (e, st) {
@@ -82,7 +82,7 @@ class AppLoggerService implements IAppLoggerService {
     final ts = DateTime.now().toIso8601String();
     final line = '[$ts] $logName $message\n';
     if (kDebugMode) debugPrint('[$logName] $message');
-    _queue.add(line); // enqueue; single sink serializes writes
+    _queue.add(() { _sink!.write(line); }); // enqueue; single sink serializes writes
     // Optionally force flush for critical logs:
     // await _sink?.flush();
   }
@@ -158,6 +158,33 @@ class AppLoggerService implements IAppLoggerService {
 
   // Expose file safely
   File? get logFile => _logFile;
+
+  @override
+  Future<AppResult<String>> snapshotLog() async {
+    try {
+      await _initCompleter.future;
+      final snapshot = Completer<AppResult<String>>();
+      _queue.add(() async {
+        try {
+          await _sink!.flush();
+          snapshot.complete(AppResult.success(await _logFile!.readAsString()));
+        } catch (error, stackTrace) {
+          snapshot.complete(AppResult.failure(AppFailure.unhandledFailure(
+            logMessage: 'Logger snapshot failed',
+            error: error,
+            stackTrace: stackTrace,
+          )));
+        }
+      });
+      return await snapshot.future;
+    } catch (error, stackTrace) {
+      return AppResult.failure(AppFailure.unhandledFailure(
+        logMessage: 'Logger snapshot failed',
+        error: error,
+        stackTrace: stackTrace,
+      ));
+    }
+  }
 
   Future<void> cleanLog() async {
     if (_logFile == null) return;

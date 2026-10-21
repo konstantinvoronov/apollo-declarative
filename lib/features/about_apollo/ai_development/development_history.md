@@ -1,4 +1,12 @@
-# Hello Apollo Development History
+# About Apollo Development History
+
+## 2026-10-21 — Version-tap log sharing
+
+The developer approved the same ten-version-tap entrypoint found in SearchUI settings. Added a Core Domain Service interface and a concrete Core Service for Apollo-only password-protected ZIP export and native sharing. Core/feature DI provide the Service through its interface. HelloApolloState owns tap count and idle/sharing status; HelloApolloCubit resets after ten taps and preserves failures as a ControllerFailure chain for the existing UI handler. ApolloWelcome forwards taps through a callback.
+
+The logger now queues write operations and its snapshot operation in order. Snapshot flushes prior writes and captures text while later queued operations wait. Logger interfaces expose AppResult<String>; archive/plugin/platform-window types stay inside the concrete sharing Service. Sharing uses a window anchor for native popover support. SearchUI's settings screen, SDK collection, physical-shake activation, and global startup remain outside this implementation. The public scaffold password is configurable through APOLLO_LOG_ARCHIVE_PASSWORD and is not a confidential credential.
+
+Verification: Android debug APK build succeeded; scoped analysis has zero errors, one pre-existing logger warning and 15 informational notices. Dependency resolution preserved existing package versions. No device is connected; native sharing, archive contents/decryption, and error-path runtime verification remain pending. Automated tests were not added or run.
 
 ## 2026-10-20 — Minimum opening delay
 
@@ -27,3 +35,7 @@ The developer clarified that the modal container is a Sheet, ModalSheetPage is i
 ## 2026-10-20 — Routing wrapper and configuration separation
 
 Following explicit approval, renamed ModalSheetPage to ModalSheetPageWrapper and moved it into UIKit core/presentation/wrappers/modal_sheet_page_wrapper.dart. Moved the unchanged ModalSheetConfig declaration into core/presentation/models/modal_sheet_config.dart and updated feature routing imports/construction. Removed the unused static show method and its package import from the screen layout, leaving route creation to the wrapper. The original app_modal_sheet.dart was removed after its declarations were relocated. Existing routed behavior is preserved; runtime verification remains pending.
+
+## 2026-10-21 — Feature renamed to About Apollo
+
+The developer approved hello_apollo → about_apollo, HelloApollo → AboutApollo, feature DI/routing entrypoint names, localization keys, and /about-apollo sheet routes. The root route / and displayed Hello Apollo World greeting retain their behavior. This file preserves earlier names as historical evidence; current code and specifications use About Apollo. Existing uncommitted version-tap sharing work moved with the feature intact.

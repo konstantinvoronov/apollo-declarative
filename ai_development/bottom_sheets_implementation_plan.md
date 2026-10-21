@@ -1,5 +1,7 @@
 # Bottom-Sheet Implementation Plan
 
+Current example feature (renamed with developer approval on 2026-10-21): lib/features/about_apollo, AboutApolloScreen/Cubit/State, and /about-apollo/legacy-sheet and /about-apollo/alternative-sheet. Earlier Hello Apollo names and paths below remain historical migration evidence. Current specifications live in lib/features/about_apollo/ai_development.
+
 ## Task and approval
 
 Include both Uber Babysitter bottom-sheet approaches in Apollo: the AppModalBottomDialog family and AlternativeModalSheetPage. The developer approved this staged plan on 2026-10-20 and requested context-checker review at each stage. The separately approved 47-file unchanged copy and dependency setup are complete. Adaptations and example wiring receive their own exact-scope approvals.

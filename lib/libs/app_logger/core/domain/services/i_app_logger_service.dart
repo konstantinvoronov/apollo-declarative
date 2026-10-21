@@ -20,5 +20,6 @@ abstract interface class IAppLoggerService {
   Future<void> unmarkCleanExit();
   Future<bool> wasLastSessionCrash();
   File? get logFile;
+  Future<AppResult<String>> snapshotLog();
   Future<void> cleanLog();
 }

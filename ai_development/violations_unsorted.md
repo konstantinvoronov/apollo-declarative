@@ -771,3 +771,92 @@ Developer-provided localization-then-typography example in this message. No exis
 ```
 
 The existing English asset defines hello_apollo.greeting as Hello Apollo World. The greeting remains inside its Center wrapper, with centered text alignment and existing footer padding. The developer's loading text was treated as a representative chain, not substituted for the greeting. Runtime localization makes the footer widget list non-const; fixed padding remains const. Original evidence is retained, and no catalog, protected library, or unrelated text was changed.
+
+## V-20261021-040020 — Violation
+
+- Recorded: 2026-10-21 04:00 Europe/Podgorica
+- Location: lib/core/presentation/widgets/apollo_welcome.dart:70
+- Type: pattern violation
+- Status: unresolved
+
+### User declaration
+
+````text
+violation:
+type: pattern violation
+
+text formatting violation
+
+bed:
+
+Text(
+                    context.tr(
+                      'apollo_welcome.build_info',
+                      namedArgs: {'version': version, 'build': buildNumber},
+                    ),
+                    textAlign: TextAlign.center,
+                    style: theme.textTheme.bodySmall?.copyWith(
+                      color: theme.colorScheme.onSurfaceVariant,
+                    ),
+                  ),
+
+good: 'apollo_welcome.build_info'.tr().p4()
+
+must use predefined string extensions and internaionalization
+````
+
+### Violating code or pattern
+
+```dart
+Text(
+  context.tr(
+    'apollo_welcome.build_info',
+    namedArgs: {'version': version, 'build': buildNumber},
+  ),
+  textAlign: TextAlign.center,
+  style: theme.textTheme.bodySmall?.copyWith(
+    color: theme.colorScheme.onSurfaceVariant,
+  ),
+)
+```
+
+### Direct violation reason from user
+
+> must use predefined string extensions and internaionalization
+
+### Intended good pattern
+
+```dart
+'apollo_welcome.build_info'.tr().p4()
+```
+
+This is the developer-confirmed representative chain. The implemented correction remains pending; the version/build interpolation and existing tap interaction remain part of the active feature requirements.
+
+### Pattern reference
+
+Related earlier declaration: V-20261020-132621, localization followed by predefined typography. This record captures a new occurrence in ApolloWelcome, where localization exists but rendering uses manual Text styling. Catalog entry remains unresolved; collection preserves catalogs and prior history.
+
+## V-20261021-040127 — Good pattern learned
+
+- Recorded: 2026-10-21 04:01 Europe/Podgorica
+- For: V-20261021-040020
+- Fixed location: lib/core/presentation/widgets/apollo_welcome.dart:71
+- Verification: scoped Dart analysis reports no issues; git diff --check passes. Runtime appearance remains unverified.
+
+### User message
+
+> aprove. use this code in violation history as good code
+
+### Good pattern confirmed by user
+
+The developer approved the proposed localization/typography chain with named arguments and centered alignment.
+
+### Confirmed target or corrected code
+
+```dart
+'apollo_welcome.build_info'
+    .tr(namedArgs: {'version': version, 'build': buildNumber})
+    .p4(textAlign: TextAlign.center)
+```
+
+Applied through the existing UIKit StringTextExtensions import. The version/build values, GestureDetector, and onVersionTap callback are preserved. Earlier violation evidence and pattern catalogs retain their contents.

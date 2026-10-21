@@ -28,7 +28,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../core/services/app_logger_service.dart';
-import '../../features/hello_apollo/presentation/routing.dart';
+import '../../features/about_apollo/presentation/routing.dart';
 import '../../libs/uikit/core/presentation/widgets/layouts/app_flexible_layouts.dart';
 import '../../shared/core/presentation/widgets/layouts/app_screens_layouts_extension.dart';
 import '../app_shell.dart';
@@ -72,7 +72,7 @@ class AppRouter {
             return AppShell(child: child);
           },
           routes: [
-            ...buildHelloApolloRoutes(di),
+            ...buildAboutApolloRoutes(di),
             // ...buildUserRoutes(),
             // GoRoute(
             //   path: 'profile',
