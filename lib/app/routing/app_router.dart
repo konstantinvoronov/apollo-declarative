@@ -110,7 +110,7 @@ class AppRouter {
 
     final failure = AppFailure.unhandledFailure(
       logMessage: error,
-      error: Error(),
+      error: state.error ?? StateError(error),
       stackTrace: StackTrace.current,
     );
     AppLoggerService().logFailure(failure);
