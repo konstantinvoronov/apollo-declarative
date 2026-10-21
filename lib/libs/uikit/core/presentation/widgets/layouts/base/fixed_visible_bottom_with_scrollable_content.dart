@@ -2,34 +2,31 @@ part of '../app_flexible_layouts.dart';
 
 ///
 class FixedVisibleBottomLayoutWithScrollableFlexibleContent extends AppTwoVisibleAreasLayout {
-  final MainAxisAlignment mainAxisAlignment;
-  final CrossAxisAlignment crossAxisAlignment;
   final ScrollController? extController;
-  final ScrollController _controller = ScrollController();
 
-  FixedVisibleBottomLayoutWithScrollableFlexibleContent({super.key,
-    this.mainAxisAlignment = MainAxisAlignment.start,
-    this.crossAxisAlignment = CrossAxisAlignment.start,
+  const FixedVisibleBottomLayoutWithScrollableFlexibleContent({super.key,
+    super.mainAxisAlignment = MainAxisAlignment.start,
+    super.crossAxisAlignment = CrossAxisAlignment.start,
     this.extController, super.child,super.children,super.bottomChildren,super.padding});
 
 
   @override
   Widget build(BuildContext context) {
-    final appSizes = AppSizes.of(context);
-
     return Padding(
         padding: padding?.insets ?? EdgeInsets.symmetric(horizontal: AppSizes.gap4w),
         child: Column(
+          mainAxisAlignment: mainAxisAlignment,
+          crossAxisAlignment: crossAxisAlignment,
           mainAxisSize: MainAxisSize.min,
           children: [
             Flexible(
               child: SingleChildScrollView(
-                controller: extController ?? _controller,
+                controller: extController,
                 physics: ClampingScrollPhysics(),
                 child: child ??
                     Column(
-                      mainAxisAlignment: mainAxisAlignment ?? MainAxisAlignment.start,
-                      crossAxisAlignment: crossAxisAlignment ?? CrossAxisAlignment.start,
+                      mainAxisAlignment: mainAxisAlignment,
+                      crossAxisAlignment: crossAxisAlignment,
                       mainAxisSize: MainAxisSize.min,
                       children: children ?? [],
                     ),
