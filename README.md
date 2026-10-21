@@ -1,6 +1,6 @@
 # Apollo Declarative
 
-A Flutter scaffold and working example of declarative, AI-assisted application development by [Konstantin Voronov](https://github.com/konstantinvoronov).
+An AI-driven application development framework by [Konstantin Voronov](https://github.com/konstantinvoronov), with a Flutter scaffold and working examples of declarative development.
 
 Apollo brings the [AI Declarative Foldering Architecture](https://github.com/konstantinvoronov/ai_declarative_foldering_architecture) into a real application. It combines explicit architectural responsibilities, reusable modules, implementation patterns, and project-local AI skills to support production-oriented development.
 
@@ -52,8 +52,8 @@ Within each architectural scope, Domain, Data, Services, Infrastructure, and Pre
 Use a Flutter SDK compatible with the [pubspec](pubspec.yaml), including Dart `^3.10.8`.
 
 ```sh
-git clone https://github.com/konstantinvoronov/apollo.git
-cd apollo
+git clone https://github.com/konstantinvoronov/apollo-declarative.git
+cd apollo-declarative
 flutter pub get
 flutter run
 ```
