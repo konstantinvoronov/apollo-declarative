@@ -98,7 +98,7 @@ Interfaces belong under their architectural responsibility, not in a generic `in
 
 Core additionally contains `managers` for app-wide business coordination and `flows` for navigation coordination. Cross-feature coordination uses deliberately public feature contracts, not feature implementation internals.
 
-Names and files identify their architectural roles according to the applicable responsibility definitions. Do not invent role suffixes for value declarations. A capability name such as logging or telemetry does not create another architectural layer.
+Names and files identify their architectural roles according to the applicable responsibility definitions. Name declarations using their established architectural role suffix, including value declarations such as `Model`, `Entity`, `DTO`, and `Params`. Use only established architectural role suffixes. A capability name such as logging or telemetry does not create another architectural layer.
 
 ### Supporting Responsibilities and Owner-Based Naming
 
