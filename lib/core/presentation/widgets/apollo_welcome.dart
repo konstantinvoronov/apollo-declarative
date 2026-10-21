@@ -1,16 +1,19 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 
+import '../../../libs/uikit/core/presentation/widgets/text/styles_extension.dart';
 import '../models/assets.gen.dart';
 
 class ApolloWelcome extends StatelessWidget {
   final String version;
   final String buildNumber;
+  final VoidCallback? onVersionTap;
 
   const ApolloWelcome({
     super.key,
     required this.version,
     required this.buildNumber,
+    this.onVersionTap,
   });
 
   @override
@@ -62,15 +65,12 @@ class ApolloWelcome extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 8),
-                Text(
-                  context.tr(
-                    'apollo_welcome.build_info',
-                    namedArgs: {'version': version, 'build': buildNumber},
-                  ),
-                  textAlign: TextAlign.center,
-                  style: theme.textTheme.bodySmall?.copyWith(
-                    color: theme.colorScheme.onSurfaceVariant,
-                  ),
+                GestureDetector(
+                  behavior: HitTestBehavior.opaque,
+                  onTap: onVersionTap,
+                  child: 'apollo_welcome.build_info'
+                      .tr(namedArgs: {'version': version, 'build': buildNumber})
+                      .p4(textAlign: TextAlign.center),
                 ),
               ],
             ),

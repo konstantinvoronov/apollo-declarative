@@ -5,7 +5,7 @@
     "tagline": "Declarative by design. Built for production.",
     "build_info": "Version {version} · Build {build}"
   },
-  "hello_apollo": {
+  "about_apollo": {
     "greeting": "Hello Apollo World",
     "sheets": {
       "open_legacy": "Legacy sheet",

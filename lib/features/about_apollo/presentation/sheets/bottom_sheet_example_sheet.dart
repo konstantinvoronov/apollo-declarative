@@ -83,14 +83,14 @@ class BottomSheetExampleSheet extends StatelessWidget
                         Expanded(
                           child: TextButton(
                             onPressed: () async => await callSkipPop(),
-                            child: 'hello_apollo.sheets.cancel'.tr().p4(),
+                            child: 'about_apollo.sheets.cancel'.tr().p4(),
                           ),
                         ),
                         Expanded(
                           child: TextButton(
                             onPressed: () async =>
                                 await callSuccessPop(context, true),
-                            child: 'hello_apollo.sheets.confirm'.tr().p4(),
+                            child: 'about_apollo.sheets.confirm'.tr().p4(),
                           ),
                         ),
                       ],
@@ -100,13 +100,13 @@ class BottomSheetExampleSheet extends StatelessWidget
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 16),
-                    child: 'hello_apollo.sheets.title'.tr().p4(),
+                    child: 'about_apollo.sheets.title'.tr().p4(),
                   ),
-                  'hello_apollo.sheets.description'.tr().p4(),
+                  'about_apollo.sheets.description'.tr().p4(),
                   for (var index = 1; index <= 20; index++)
                     Padding(
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      child: 'hello_apollo.sheets.item'
+                      child: 'about_apollo.sheets.item'
                           .tr(namedArgs: {'number': '$index'})
                           .p4(),
                     ),
