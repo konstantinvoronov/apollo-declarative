@@ -28,6 +28,7 @@ Trace the declaration to its callers and determine:
 
 - Interfaces use the `I<Name><Role>` convention declared by their folder rules.
 - Concrete implementations use the corresponding `<Name><Role>` name without an `I` prefix and without an `Impl` suffix.
+- Value declarations use their established architectural role suffix, including `Model`, `Entity`, `DTO`, and `Params`, as required by the governing foldering rules. Use only established architectural role suffixes.
 - Repository names identify Domain repository contracts or their concrete Infrastructure implementations.
 - Data Source names identify one isolated external service boundary.
 - Controller, Cubit, and Bloc names identify the screen whose UI logic they own.
