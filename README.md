@@ -68,6 +68,89 @@ The [implementation plan](ai_development/implementation_plan.md) records migrati
 
 Apollo carries its own harness and skills. Shared harness definitions can be synchronized with the architecture project through the documented sync workflow; patterns, violation history, and application source remain project-owned.
 
+## AI skills by workflow stage
+
+Invoke the linked project-local skills using `$skill-name` in a compatible AI tool. The agent performs their checks and reports evidence.
+
+### Orientation and architectural design
+
+- [human-developer-helper](.agents/skills/human-developer-helper/SKILL.md) — explain the current stage, useful next step, and why.
+- [resolve-declarative-responsibilities](.agents/skills/resolve-declarative-responsibilities/SKILL.md) — resolve proposed objects' roles, names, layers, placement, and both dependency directions before implementation.
+
+### After the initial plan is built
+
+- [context-checker](.agents/skills/context-checker/SKILL.md) — verify the plan uses sufficient, relevant context and correctly interprets applicable instructions.
+- [task-decomposer](.agents/skills/task-decomposer/SKILL.md) — review whether work should be split into smaller independent tasks; its current audit inputs are working-tree, staged, or committed changes. Use that evidence when available and distinguish planning recommendations from a completed change-set audit.
+
+### When implementation is complete
+
+Run [finalize-job](.agents/skills/finalize-job/SKILL.md). Its workflow automatically includes these project-local checks when the agent executes the skill:
+
+- [pattern-keeper](.agents/skills/pattern-keeper/SKILL.md) — review the job against applicable implementation patterns and request corrections.
+- [check-naming](.agents/skills/check-naming/SKILL.md) — verify names express established architectural roles.
+- [check-declarative-rules](.agents/skills/check-declarative-rules/SKILL.md) — verify architectural declarations, dependency permissions, and approvals.
+- [check-responsibility-leaks](.agents/skills/check-responsibility-leaks/SKILL.md) — compare actual behavior and dependencies with declared responsibilities.
+- [task-decomposer](.agents/skills/task-decomposer/SKILL.md) — check the final change set for independent concerns requiring separation.
+- [update-diagnostic-spec](.agents/skills/update-diagnostic-spec/SKILL.md) — audit affected features' diagnostic specifications; update mode is available during separately authorized diagnostics work.
+- [violation](.agents/skills/violation/SKILL.md) — collect remaining developer-declared violations from the conversation before the final audits.
+
+Finalization also checks verification evidence, feature documentation, protected files, and commit state. Invocation is an agent workflow requirement; evidence of execution establishes which checks actually ran.
+
+### Understand changes and review code
+
+- [update-by-layer](.agents/skills/update-by-layer/SKILL.md) — explain changes by architectural layer and responsibility, naming objects, files, and generated updates.
+- [violation](.agents/skills/violation/SKILL.md) — record review findings declared by the developer, their cause, offending code, and confirmed intended correction.
+
+### Periodic developer-led maintenance
+
+- [maintain-ai-harness](.agents/skills/maintain-ai-harness/SKILL.md) — review harness consistency and performance using recent violations; help the developer resolve them and apply approved pattern or instruction updates.
+
+## Start a project from Git
+
+### Scenario 1: Use Apollo as your application scaffold
+
+Create an empty destination repository, then:
+
+```sh
+git clone https://github.com/konstantinvoronov/apollo-declarative.git my-app
+cd my-app
+git remote rename origin apollo
+git remote add origin https://github.com/YOUR_ACCOUNT/YOUR_REPOSITORY.git
+git switch -c project-start
+flutter pub get
+flutter run
+```
+
+This preserves Apollo's starting history and keeps it as a reference remote. Push the approved baseline with `git push -u origin project-start` when ready.
+
+First prompt:
+
+```text
+Read lib/AGENTS.md and ai_development/ai_harness.md. Use this project's local skills. Plan adapting Apollo for <describe the application>, including its display name, Dart package, native identifiers, and first feature. Identify the examples and reusable foundations to retain. Show proposed objects, responsibilities, layers, paths, and affected files; run context-checker before presenting the plan for approval.
+```
+
+Expected next step: approve the identity and first-feature adaptation. Apollo's current Dart package name remains `ai_declarative_foldering_architecture`; include its package imports in the identity review.
+
+### Scenario 2: Start with architecture rules instead of the scaffold
+
+Use the [architecture blueprint's Git startup instructions](https://github.com/konstantinvoronov/ai_declarative_foldering_architecture#start-a-project-from-git). Choose a published revision containing its current harness and skills, then plan the first minimal working feature. This route starts from architectural declarations rather than Apollo's implemented examples.
+
+### Scenario 3: Adopt the harness in an existing application
+
+Clone Apollo beside the existing project. From the Apollo directory, preview the explicitly listed shared files and sections:
+
+```sh
+python3 ai_development/sync_harness.py --source . --target /absolute/path/to/existing-project
+```
+
+First prompt:
+
+```text
+Review the harness synchronization preview against the existing project's instructions and architecture. Propose scoped adoption, preserving project-specific patterns, violation history, and source. Identify conflicts and exact instruction files requiring approval. Run context-checker on the plan and ask for approval before applying it.
+```
+
+Expected next step: approve selected changes and resolve conflicts. Apply the reviewed synchronization with the same command plus `--apply`; approve each affected AGENTS.md separately. The manifest transfers shared harness definitions; application source, project patterns, and violation history stay project-owned. The target's project-wide lib/AGENTS.md and pattern catalog need review alongside the shared definitions.
+
 ## Log sharing
 
 Tap the version/build label ten times to request the native share sheet with a ZIP containing `session_log.txt`. The archive includes the existing application log contents; the user chooses the sharing destination.
