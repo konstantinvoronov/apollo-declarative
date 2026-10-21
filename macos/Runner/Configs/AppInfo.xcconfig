@@ -5,10 +5,10 @@
 // 'flutter create' template.
 
 // The application's name. By default this is also the title of the Flutter window.
-PRODUCT_NAME = ai_declarative_foldering_architecture
+PRODUCT_NAME = Apollo Declarative
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.aiDeclarativeFolderingArchitecture
+PRODUCT_BUNDLE_IDENTIFIER = com.kvoronov.apollo
 
 // The copyright displayed in application information
 PRODUCT_COPYRIGHT = Copyright © 2026 com.example. All rights reserved.

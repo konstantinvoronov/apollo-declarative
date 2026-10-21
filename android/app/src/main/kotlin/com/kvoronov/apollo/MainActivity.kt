@@ -1,4 +1,4 @@
-package com.example.ai_declarative_foldering_architecture
+package com.kvoronov.apollo
 
 import io.flutter.embedding.android.FlutterActivity
 
