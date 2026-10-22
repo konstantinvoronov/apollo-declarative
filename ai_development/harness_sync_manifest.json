@@ -2,6 +2,12 @@
   "version": 1,
   "shared": [
     {
+      "path": ".agents/skills/update-framework-harness/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/update-framework-harness/agents/openai.yaml"
+    },
+    {
       "path": ".agents/skills/investigate-discovered-violation/SKILL.md"
     },
     {

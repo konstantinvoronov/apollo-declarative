@@ -1,0 +1,6 @@
+interface:
+  display_name: "Update Framework Harness"
+  short_description: "Review and adopt Apollo Declarative harness updates"
+  default_prompt: "Use $update-framework-harness to review changes since this project's Apollo Declarative version and propose architectural updates for my decision."
+policy:
+  allow_implicit_invocation: false
