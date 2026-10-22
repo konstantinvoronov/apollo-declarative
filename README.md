@@ -105,6 +105,14 @@ Finalization also checks verification evidence, feature documentation, protected
 
 - [investigate-discovered-violation](.agents/skills/investigate-discovered-violation/SKILL.md) — explicitly reopen a discovered legacy-code or technical-debt finding for investigation, trace its evidenced causes and related occurrences, and propose remediation for approval. This is separate from recording a violation and can start outside an active task. It coordinates context, responsibility resolution, architecture, naming, and pattern reviews; approved corrections proceed through finalization and an update by layer. Historical evidence and current requirements are distinguished.
 
+### Update Apollo Declarative in a derived project
+
+- [update-framework-harness](.agents/skills/update-framework-harness/SKILL.md) — compare the project's recorded Apollo Declarative commit with latest upstream master, explain architectural harness changes with affected files, and offer adoption of all updates, selected improvements, or project-specific adaptations.
+
+The project's [framework version](ai_development/apollo_declarative_version.json) is one upstream commit. After the developer's final decision and completion of selected changes, it advances to the commit inspected by that session, including when all updates are declined. The next session starts from that marker. A separate [update history](ai_development/apollo_declarative_update_history.md) explains completed sessions.
+
+These tracking files remain project-owned. The skill uses the shared manifest to scope harness updates and preserves application source, local patterns, and violation history. Existing protected-file approvals remain active. Version tracking starts from the recorded baseline; the initial history entry explains how it was established.
+
 ### Periodic developer-led maintenance
 
 - [maintain-ai-harness](.agents/skills/maintain-ai-harness/SKILL.md) — review harness consistency and performance using recent violations; help the developer resolve them and apply approved pattern or instruction updates.
