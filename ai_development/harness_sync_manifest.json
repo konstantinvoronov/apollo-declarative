@@ -2,6 +2,12 @@
   "version": 1,
   "shared": [
     {
+      "path": ".agents/skills/investigate-discovered-violation/SKILL.md"
+    },
+    {
+      "path": ".agents/skills/investigate-discovered-violation/agents/openai.yaml"
+    },
+    {
       "path": ".agents/skills/check-declarative-rules/SKILL.md"
     },
     {
