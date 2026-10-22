@@ -101,6 +101,10 @@ Finalization also checks verification evidence, feature documentation, protected
 - [update-by-layer](.agents/skills/update-by-layer/SKILL.md) — explain changes by architectural layer and responsibility, naming objects, files, and generated updates.
 - [violation](.agents/skills/violation/SKILL.md) — record review findings declared by the developer, their cause, offending code, and confirmed intended correction.
 
+### Investigate an existing violation
+
+- [investigate-discovered-violation](.agents/skills/investigate-discovered-violation/SKILL.md) — explicitly reopen a discovered legacy-code or technical-debt finding for investigation, trace its evidenced causes and related occurrences, and propose remediation for approval. This is separate from recording a violation and can start outside an active task. It coordinates context, responsibility resolution, architecture, naming, and pattern reviews; approved corrections proceed through finalization and an update by layer. Historical evidence and current requirements are distinguished.
+
 ### Periodic developer-led maintenance
 
 - [maintain-ai-harness](.agents/skills/maintain-ai-harness/SKILL.md) — review harness consistency and performance using recent violations; help the developer resolve them and apply approved pattern or instruction updates.
