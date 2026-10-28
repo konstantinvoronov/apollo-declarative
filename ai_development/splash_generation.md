@@ -13,4 +13,4 @@ Subject: one confident, beautifully balanced abstract capital A / Apollo ascent 
 Style: flat, crisp, vector-like graphic rendered as a high quality raster PNG, monochrome dark ink, no texture, no glow, no shadows, no 3D.
 Composition: square 1024 by 1024 canvas, optically centered. Keep the entire symbol inside the middle 55 percent of both canvas dimensions, with generous empty padding on every side for Android circular splash masking.
 Background: genuinely transparent alpha outside the symbol; intended to sit on a white splash background.
-No words, no slogan, no watermark, no surrounding app icon tile, no device, no presentation board, no reference application branding, no NASA insignia. Deliver only the single final emblem asset.
+No words, no slogan, no watermark, no surrounding app icon tile, no device, no presentation board, no Reference application branding, no NASA insignia. Deliver only the single final emblem asset.

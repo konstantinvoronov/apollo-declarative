@@ -1,6 +1,6 @@
-import 'package:ai_declarative_foldering_architecture/app/di/di.dart';
-import 'package:ai_declarative_foldering_architecture/core/telemetry/app_logger.dart';
-import 'package:ai_declarative_foldering_architecture/libs/app_uikit/shared/presentation/services/app_toast.dart';
+import 'package:ai_declarative_foldering_architecture/app/di.dart';
+import 'package:ai_declarative_foldering_architecture/core/domain/services/i_app_logger_service.dart';
+import 'package:ai_declarative_foldering_architecture/shared/core/presentation/services/app_snack_bar.dart';
 import 'package:app_failure/app_failure.dart';
 import 'package:ai_declarative_foldering_architecture/shared/extensions/tr_extension.dart';
 import 'package:flutter/material.dart';
@@ -46,7 +46,7 @@ mixin AppHandleFailure{
         required AppFailure failure,
         required Function() clearUnhandledError}) {
 
-    final logger = di<AppLogger>();
+    final logger = di<IAppLoggerService>();
     final snackbar = di<AppSnackBar>();
 
     logger.logFailure(failure, context: 'HandleFailure: logger',);

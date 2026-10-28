@@ -2,7 +2,7 @@
 
 ## 2026-10-21 — Version-tap log sharing
 
-The developer approved the same ten-version-tap entrypoint found in reference settings application settings. Added a Core Domain Service interface and a concrete Core Service for Apollo-only password-protected ZIP export and native sharing. Core/feature DI provide the Service through its interface. HelloApolloState owns tap count and idle/sharing status; HelloApolloCubit resets after ten taps and preserves failures as a ControllerFailure chain for the existing UI handler. ApolloWelcome forwards taps through a callback.
+The developer approved the same ten-version-tap entrypoint found in the reference settings screen. Added a Core Domain Service interface and a concrete Core Service for Apollo-only password-protected ZIP export and native sharing. Core/feature DI provide the Service through its interface. HelloApolloState owns tap count and idle/sharing status; HelloApolloCubit resets after ten taps and preserves failures as a ControllerFailure chain for the existing UI handler. ApolloWelcome forwards taps through a callback.
 
 The logger now queues write operations and its snapshot operation in order. Snapshot flushes prior writes and captures text while later queued operations wait. Logger interfaces expose AppResult<String>; archive/plugin/platform-window types stay inside the concrete sharing Service. Sharing uses a window anchor for native popover support. reference settings application's settings screen, SDK collection, physical-shake activation, and global startup remain outside this implementation. The public scaffold password is configurable through APOLLO_LOG_ARCHIVE_PASSWORD and is not a confidential credential.
 
@@ -20,7 +20,7 @@ Scoped feature analysis passes and Android hot reload succeeded. Device logs sti
 
 ## 2026-10-20 — Bottom-sheet examples
 
-The developer approved Stage 6 examples after the reference application library intake and adaptations. The agreed subset is a constrained legacy ModalSheetPage and compact-to-full-screen AlternativeModalSheetPage, reusing one feature-owned sheet rather than duplicating content. Content-sized legacy and imperative-show examples remain candidates.
+The developer approved Stage 6 examples after the bottom-sheet source application library intake and adaptations. The agreed subset is a constrained legacy ModalSheetPage and compact-to-full-screen AlternativeModalSheetPage, reusing one feature-owned sheet rather than duplicating content. Content-sized legacy and imperative-show examples remain candidates.
 
 An endpoint review found Apollo's App guide omitted feature consumers. The developer separately approved that specific guide change, exposing App DI/router entrypoints to feature Presentation while preserving private registration helpers. Example implementation followed that approval.
 

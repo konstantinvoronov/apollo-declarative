@@ -4,9 +4,9 @@ Current example feature (renamed with developer approval on 2026-10-21): lib/fea
 
 ## Task and approval
 
-Include both reference application bottom-sheet approaches in Apollo: the AppModalBottomDialog family and AlternativeModalSheetPage. The developer approved this staged plan on 2026-10-20 and requested context-checker review at each stage. The separately approved 47-file unchanged copy and dependency setup are complete. Adaptations and example wiring receive their own exact-scope approvals.
+Include both imported bottom-sheet approaches in Apollo: the AppModalBottomDialog family and AlternativeModalSheetPage. The developer approved this staged plan on 2026-10-20 and requested context-checker review at each stage. The separately approved 47-file unchanged copy and dependency setup are complete. Adaptations and example wiring receive their own exact-scope approvals.
 
-Source project: `<bottom-sheet-source>`. Target: `<apollo-project>`. reference application supplies comparison evidence; reference application supplies the selected implementations. Apollo's local harness and declarative rules govern target placement.
+Source project: `<bottom-sheet-source>`. Target: `<apollo-project>`. Reference application supplies comparison evidence; bottom-sheet source application supplies the selected implementations. Apollo's local harness and declarative rules govern target placement.
 
 ## Architectural intent
 
@@ -32,7 +32,7 @@ Use Apollo's local context-checker on each stage's proposal before edits. Resolv
 
 The following copy destinations are proposals. Original source files remain intact during intake; any later split, rename, or behavior change is discussed after copying.
 
-All source paths below are relative to reference application. Destinations are relative to Apollo.
+All source paths below are relative to the bottom-sheet source application. Destinations are relative to Apollo.
 
 | Source | Proposed unchanged-copy destination | Declarations and roles |
 |---|---|---|
@@ -67,9 +67,9 @@ Exit: complete dependency/source copy map, compatibility assessment, and exact p
 
 #### Stage 2 findings and proposed dependency layout — 2026-10-20
 
-Legacy dependency: propose the hosted stable modal_bottom_sheet 3.0.0, pinned for this intake. reference application resolves that exact release. Its cached published manifest permits Dart >=3.3.0 <4.0.0, and its exported ModalSheetRoute/showMaterialModalBottomSheet APIs match the selected legacy file. See [release metadata](https://pub.dev/packages/modal_bottom_sheet/versions/3.0.0). Root pubspec/pubspec.lock remain unchanged during this review.
+Legacy dependency: propose the hosted stable modal_bottom_sheet 3.0.0, pinned for this intake. The bottom-sheet source application resolves that exact release. Its cached published manifest permits Dart >=3.3.0 <4.0.0, and its exported ModalSheetRoute/showMaterialModalBottomSheet APIs match the selected legacy file. See [release metadata](https://pub.dev/packages/modal_bottom_sheet/versions/3.0.0). Root pubspec/pubspec.lock remain unchanged during this review.
 
-Alternative dependency: propose the existing customized sheet package at `packages/sheet/`, consumed through `package:sheet/sheet.dart` and `package:sheet/route.dart`. This is an external Flutter dependency package with its own manifest/license, separate from Apollo's UIKit presentation adapters. Preserve its package name and source layout. Current runtime imports use Flutter/Dart and the package itself; the package does not import reference application application source.
+Alternative dependency: propose the existing customized sheet package at `packages/sheet/`, consumed through `package:sheet/sheet.dart` and `package:sheet/route.dart`. This is an external Flutter dependency package with its own manifest/license, separate from Apollo's UIKit presentation adapters. Preserve its package name and source layout. Current runtime imports use Flutter/Dart and the package itself; the package does not import the source application.
 
 The local package contains required behavior changes: resizable/minResizableExtent in the route/page API, configurable snapSpring, and snapToDragDirection coordinated with inner scroll handling. Git commit d87f047 records the route/physics/scroll-controller changes, and AlternativeModalSheetPage directly supplies resizable, snapSpring, and snapToDragDirection. The [hosted SheetPage API inspected](https://pub.dev/documentation/sheet/latest/route/SheetPage-class.html) does not expose those same constructor parameters; preserve the local implementation rather than assuming a hosted replacement is equivalent.
 
@@ -280,7 +280,7 @@ Next: review the remaining routing-wrapper/configuration names and the retained 
 
 Renamed ModalSheetPage to ModalSheetPageWrapper and moved it to lib/libs/uikit/core/presentation/wrappers/modal_sheet_page_wrapper.dart. Its role is a concrete Core Presentation Page wrapper, with owner role Page and supporting responsibility Wrapper. Moved ModalSheetConfig unchanged into lib/libs/uikit/core/presentation/models/modal_sheet_config.dart as a Presentation configuration value. The wrapper imports that model and the existing Shared screen-layout factory; the model imports only Flutter. Hello Apollo's public routing entrypoint imports both declarations and constructs the wrapper. Dependency direction and public consumer roles are unchanged by the moves.
 
-Removed the developer-approved unused AppModalBottomSheetLayout.show method, its method-specific comments, and the modal package import from the layout. This closes the earlier imperative-navigation leakage finding for that layout. All remaining comments and render bodies are retained. Removed the emptied app_modal_sheet.dart after relocating both declarations; original intake remains recoverable from the reference application source and the recorded migration history. A preserved historical comment in AppRouter still illustrates the old ModalSheetPage name; it is not an executable reference and was outside this edit approval.
+Removed the developer-approved unused AppModalBottomSheetLayout.show method, its method-specific comments, and the modal package import from the layout. This closes the earlier imperative-navigation leakage finding for that layout. All remaining comments and render bodies are retained. Removed the emptied app_modal_sheet.dart after relocating both declarations; original intake remains recoverable from the bottom-sheet source application source and the recorded migration history. A preserved historical comment in AppRouter still illustrates the old ModalSheetPage name; it is not an executable reference and was outside this edit approval.
 
 Scoped analysis of the new wrapper/model, layout, and Hello Apollo reports zero errors, five existing clipper-variable warnings, and two informational notices. git diff --check passes. The configuration declaration matches its pre-move body. Existing route behavior, including the separately recorded dismissible/title/padding limitations, remains unchanged. Runtime behavior is unverified; tests were not run. No AGENTS, startup, alternative adapter, or package changes were made in this step.
 
@@ -298,13 +298,13 @@ Use the local finalization audits after approved implementation and corrections.
 
 ## Context-checker evidence — Stage 1, 2026-10-20
 
-Task: plan and inventory both reference application approaches for Apollo. Stage approval covers planning/source inspection; code copies and adaptations remain proposed.
+Task: plan and inventory both bottom-sheet source application approaches for Apollo. Stage approval covers planning/source inspection; code copies and adaptations remain proposed.
 
 Authority consulted: Apollo lib/AGENTS.md, ai_development/ai_harness.md, ai_development/declarative_foldering_rules.md, relevant library/Core/Shared/App/feature blueprint guides, ai_development/AGENTS.md, and the established copy/review process in implementation_plan.md. The named architecture-project skill and Apollo's local context-checker were read; execution follows the target project's local harness.
 
-Observed source evidence: all three candidate application files, their direct imports and declarations, source route examples, navigation mixins, the local package file inventory/manifest/public exports/license, and existing Apollo Presentation collaborators. The inspected reference application lib/AGENTS.md governs reference-project inspection; Apollo's guides govern destination placement. Project patterns are empty; the routing catalog is scoped to App routing and is loaded only for its planned boundary.
+Observed source evidence: all three candidate application files, their direct imports and declarations, source route examples, navigation mixins, the local package file inventory/manifest/public exports/license, and existing Apollo Presentation collaborators. The inspected source application’s lib/AGENTS.md governs reference-project inspection; Apollo's guides govern destination placement. Project patterns are empty; the routing catalog is scoped to App routing and is loaded only for its planned boundary.
 
-Confirmed missing context: none identified for inventory and the application-file placement proposal. Unnecessary context: none identified for those supported decisions. Interpretation correction retained: source behavior is evidence rather than Apollo authority; dependency existence, SDK compatibility, architectural permission, and runtime verification are separate claims. reference application's optional wrapper/title behavior is comparison evidence rather than an implicit addition to the selected source.
+Confirmed missing context: none identified for inventory and the application-file placement proposal. Unnecessary context: none identified for those supported decisions. Interpretation correction retained: source behavior is evidence rather than Apollo authority; dependency existence, SDK compatibility, architectural permission, and runtime verification are separate claims. Reference application's optional wrapper/title behavior is comparison evidence rather than an implicit addition to the selected source.
 
 Unverified coverage: local package Dart/Flutter compatibility, package destination, diagnostics integration choice, and runtime gestures remain Stage 2 onward work. Existing source bodies were inspected for inventory/behavior; they were not used to redefine the resolver's declared layer. This self-review has no separate reviewer execution trace or access to hidden model context.
 

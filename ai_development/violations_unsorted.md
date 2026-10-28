@@ -1,6 +1,6 @@
 # Violations — Pending History
 
-Project identifiers in historical excerpts were anonymized at the developer's request. These excerpts preserve technical evidence but are no longer verbatim quotations.
+Project identifiers in historical excerpts were anonymized at the developer's request on 2026-10-28. Those excerpts retain the original technical evidence but are no longer verbatim quotations.
 
 Project-local evidence collected by the violation skill. Collection is append-only; developer-approved harness maintenance may transfer an entry into a scoped pattern catalog and remove only the verified processed entry.
 
@@ -67,7 +67,7 @@ Verified in the current Apollo screen before any correction:
 
 > the code is a little bigget but you must use AppScreenLayouts instead of Scaffold and use AppFlexibleLayouts is first main layout
 
-The developer supplied a reference application Home page example in `<developer-attachment>/Pasted text.txt`. Its representative outer composition is:
+The developer supplied a Reference application Home page example in `<developer-attachment>/Pasted text.txt`. Its representative outer composition is:
 
 ```dart
     return AppScreenLayouts.appGreenGradientScreen(
@@ -80,7 +80,7 @@ The example confirms screen-wrapper then flexible-layout composition. Its featur
 
 ### Pattern reference
 
-Developer-identified source: reference application page-building pattern and the attached Home page example. No catalog entry or pattern ID was identified. Catalog promotion is pending separate developer-invoked maintenance; no pattern catalog was changed during collection.
+Developer-identified source: Reference application page-building pattern and the attached Home page example. No catalog entry or pattern ID was identified. Catalog promotion is pending separate developer-invoked maintenance; no pattern catalog was changed during collection.
 
 ## V-20261020-104259 — Violation
 
@@ -184,7 +184,7 @@ The attached example `<developer-attachment>/Pasted text.txt` supplies separate 
 
 ### Pattern reference
 
-Developer-identified page/sheet Bloc composition and attached reference application Home builder/listener example. No catalog entry or pattern ID was identified. The target is confirmed; implementation and separate maintenance-driven catalog promotion remain pending. No existing violation was rewritten or removed.
+Developer-identified page/sheet Bloc composition and attached Reference application Home builder/listener example. No catalog entry or pattern ID was identified. The target is confirmed; implementation and separate maintenance-driven catalog promotion remain pending. No existing violation was rewritten or removed.
 
 ## V-20261020-104525 — Violation
 
@@ -257,7 +257,7 @@ Developer-identified screen/sheet declaration pattern and supplied HomeScreen ex
       child: AppFlexibleLayouts.FixedVisibleBottomLayoutWithForcedToFillContent(
 ```
 
-The existing Shared AppScreenLayouts extension is used. The flexible layout keeps the welcome widget's existing scrolling and fixed greeting footer. No reference application-specific green styling or feature content was introduced.
+The existing Shared AppScreenLayouts extension is used. The flexible layout keeps the welcome widget's existing scrolling and fixed greeting footer. No Source-specific green styling or feature content was introduced.
 
 ## V-20261020-120845-2 — Good pattern learned
 

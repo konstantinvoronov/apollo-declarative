@@ -1,14 +1,14 @@
-import 'package:ai_declarative_foldering_architecture/app/di/di.dart';
+import 'package:ai_declarative_foldering_architecture/app/di.dart';
 import 'package:ai_declarative_foldering_architecture/app/routing/app_router.dart';
 import 'package:ai_declarative_foldering_architecture/core/services/shake_service.dart';
-import 'package:ai_declarative_foldering_architecture/core/telemetry/app_logger.dart';
-import 'package:ai_declarative_foldering_architecture/libs/app_uikit/shared/presentation/services/app_toast.dart';
+import 'package:ai_declarative_foldering_architecture/core/domain/services/i_app_logger_service.dart';
+import 'package:ai_declarative_foldering_architecture/shared/core/presentation/services/app_snack_bar.dart';
 import 'package:app_failure/app_failure.dart';
 import 'package:flutter/material.dart';
 
 class AppGlobalErrorHandlers {
   static Future<void> handleZonedError(Object error, StackTrace   stack) async {
-    final logger = di<AppLogger>();
+    final logger = di<IAppLoggerService>();
     final shakeService = di<ShakeService>();
     final snackbar = di<AppSnackBar>();
 
@@ -23,7 +23,7 @@ class AppGlobalErrorHandlers {
         WidgetsBinding.instance.reassembleApplication();
       }
 
-      await AppLogger().logFailure(error);
+      await logger.logFailure(error);
 
 
       // TODO здень надо убедится что повторящиеся ошибки не будут вылетать.
@@ -48,7 +48,7 @@ class AppGlobalErrorHandlers {
       print(failure.toString());
 
       // некоторые ошибки которые сюда доходят должны быть показаны некоторые репортнуты
-      await AppLogger().logFailure(failure);
+      await logger.logFailure(failure);
 
       final context = di<AppRouter>().rootNavigatorKey;
       if(context==null) return;

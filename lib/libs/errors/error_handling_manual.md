@@ -1,6 +1,6 @@
 # Error Handling Architecture Manual
 
-> Historical reference application reference, superseded by [Apollo AppFailure usage rules](../../../ai_development/app_failure_usage_rules.md). Do not use the legacy `Either`, local failure definitions, or factory names below for Apollo code. Apollo uses `package:app_failure/app_failure.dart` and `AppResult<T>`; its `fold` takes success first, then failure.
+> Historical Reference application reference, superseded by [Apollo AppFailure usage rules](../../../ai_development/app_failure_usage_rules.md). Do not use the legacy `Either`, local failure definitions, or factory names below for Apollo code. Apollo uses `package:app_failure/app_failure.dart` and `AppResult<T>`; its `fold` takes success first, then failure.
 
 This document outlines the structure, flow, and principles behind the app's error processing mechanism. It is designed for clarity, reliability, and separation of concerns.
 

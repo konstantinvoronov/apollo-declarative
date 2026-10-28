@@ -2,7 +2,7 @@
 
 Scope: `lib/app/routing` and its descendants. Apply this catalog cumulatively with the project-wide and other applicable ancestor catalogs. It does not cancel inherited rules or change architectural dependency permissions.
 
-The examples show the caller and destination sides of the routing contract. Examples outside this subtree do not extend this catalog's enforcement scope to feature screens or other folders. reference application-specific routes, parameters, widgets, and values below are representative; their presence here does not mean Apollo implements them.
+The examples show the caller and destination sides of the routing contract. Examples outside this subtree do not extend this catalog's enforcement scope to feature screens or other folders. Source-specific routes, parameters, widgets, and values below are representative; their presence here does not mean Apollo implements them.
 
 ## Pattern: push_route_with_params — Call a path with its parameters
 

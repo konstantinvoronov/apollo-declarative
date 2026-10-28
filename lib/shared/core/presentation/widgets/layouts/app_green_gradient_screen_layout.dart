@@ -1,8 +1,8 @@
 // import 'dart:ui';
 // import 'package:flutter/material.dart';
-// import 'package:ai_declarative_foldering_architecture/libs/app_uikit/app/consts/app_sizes.dart';
-// import 'package:ai_declarative_foldering_architecture/libs/app_uikit/shared/presentation/app_theme.dart';
-// import 'package:ai_declarative_foldering_architecture/libs/app_uikit/shared/widgets/layouts/app_screen_layout.dart';
+// import 'package:ai_declarative_foldering_architecture/libs/uikit/core/presentation/models/layout/app_sizes.dart';
+// import 'package:ai_declarative_foldering_architecture/libs/uikit/core/presentation/models/themes/app_theme.dart';
+// import 'package:ai_declarative_foldering_architecture/libs/uikit/core/presentation/widgets/layouts/app_screen_layout.dart';
 //
 // import '../../../libs/app_uikit/shared/widgets/app_bar.dart';
 //
