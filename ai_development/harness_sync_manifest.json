@@ -149,6 +149,15 @@
       "path": "lib/AGENTS.md",
       "start_marker": "<!-- shared-ai-harness:start -->",
       "end_marker": "<!-- shared-ai-harness:end -->"
+    },
+    {
+      "path": ".agents/skills/setup-apollo-declarative/SKILL.md"
+    },
+    {
+      "path": "ai_development/project_management.md"
+    },
+    {
+      "path": "ai_development/ticket_review_records.md"
     }
   ]
 }
