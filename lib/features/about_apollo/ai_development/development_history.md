@@ -39,3 +39,9 @@ Following explicit approval, renamed ModalSheetPage to ModalSheetPageWrapper and
 ## 2026-10-21 — Feature renamed to About Apollo
 
 The developer approved hello_apollo → about_apollo, HelloApollo → AboutApollo, feature DI/routing entrypoint names, localization keys, and /about-apollo sheet routes. The root route / and displayed Hello Apollo World greeting retain their behavior. This file preserves earlier names as historical evidence; current code and specifications use About Apollo. Existing uncommitted version-tap sharing work moved with the feature intact.
+
+## 2026-11-01 — Notification controls and framework configuration
+
+Added the notification demonstration through AboutApolloCubit/State and its existing screen and DI. Both iOS and Android are required. The developer accepted the two-service architecture, deferred issue creation, and clarified that Firebase/APNs configuration belongs in setup for each derived app. The framework retains no specific Firebase project or registration backend. Notification implementation, setup workflow and finalizer correction were subsequently accepted as separate finalization scopes.
+
+The [full available conversation transcript](../../../../ai_development/notifications_conversation_transcript.md) preserves typed and voice dialogue and approval evidence; this entry is an index and decision summary. Source review and Astra approach review passed for their recorded scopes. Android compilation/scoped analysis passed; native/device behavior and full iOS compilation remain pending. See [notification diagnostic procedure](about_apollo_logs_test_spec.md) for the feature's checks and limits.

@@ -69,10 +69,61 @@ class AboutApolloScreen extends StatelessWidget
         padding: AppLayoutPaddings.zero,
         paddingBottom: AppLayoutPaddings.zero,
         bottomChildren: [
+          if (context.read<AboutApolloCubit>().supportsNotifications)
+            Center(
+              child:
+                  'about_apollo.notifications.permission_${state.notificationPermission?.name ?? 'unknown'}'
+                      .tr()
+                      .p4(),
+            ),
           Center(
             child: Wrap(
               alignment: WrapAlignment.center,
               children: [
+                if (context.read<AboutApolloCubit>().supportsNotifications) ...[
+                  TextButton(
+                    onPressed:
+                        state.notificationStatus ==
+                            AboutApolloNotificationStatus.busy
+                        ? null
+                        : context
+                              .read<AboutApolloCubit>()
+                              .requestNotificationPermission,
+                    child: 'about_apollo.notifications.enable'.tr().p4(),
+                  ),
+                  TextButton(
+                    onPressed:
+                        state.notificationStatus ==
+                            AboutApolloNotificationStatus.busy
+                        ? null
+                        : () => context
+                              .read<AboutApolloCubit>()
+                              .displayExampleNotification(
+                                title: 'about_apollo.notifications.title'.tr(),
+                                body: 'about_apollo.notifications.body'.tr(),
+                              ),
+                    child: 'about_apollo.notifications.display'.tr().p4(),
+                  ),
+                  TextButton(
+                    onPressed:
+                        state.notificationStatus ==
+                            AboutApolloNotificationStatus.busy
+                        ? null
+                        : context
+                              .read<AboutApolloCubit>()
+                              .cancelExampleNotification,
+                    child: 'about_apollo.notifications.cancel'.tr().p4(),
+                  ),
+                  if (context.read<AboutApolloCubit>().supportsPush)
+                    TextButton(
+                      onPressed:
+                          state.notificationStatus ==
+                              AboutApolloNotificationStatus.busy
+                          ? null
+                          : context.read<AboutApolloCubit>().registerForPush,
+                      child: 'about_apollo.notifications.push'.tr().p4(),
+                    ),
+                ],
                 TextButton(
                   onPressed: () =>
                       openSheet(context, '/about-apollo/legacy-sheet'),

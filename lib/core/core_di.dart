@@ -1,3 +1,7 @@
+import 'domain/services/i_app_local_notification_service.dart';
+import 'domain/services/i_app_push_notification_service.dart';
+import 'services/app_local_notification_service.dart';
+import 'services/app_push_notification_service.dart';
 import 'domain/services/i_app_build_info_service.dart';
 import 'services/app_build_info_service.dart';
 import 'domain/services/i_app_log_share_service.dart';
@@ -18,6 +22,19 @@ import 'infrastructure/repositories/app_settings_repository.dart';
 void registerCore(GetIt di) {
   di.registerSingletonAsync<IAppBuildInfoService>(AppBuildInfoService.load);
   di.registerSingleton<IAppLoggerService>(AppLoggerService());
+  di.registerSingletonAsync<IAppLocalNotificationService>(() async {
+    final service = AppLocalNotificationService(di<IAppLoggerService>());
+    (await service.initialize()).fold((_) {}, (failure) => throw failure);
+    return service;
+  }, dispose: (service) => service.dispose());
+  di.registerSingletonAsync<IAppPushNotificationService>(() async {
+    final service = AppPushNotificationService(
+      di<IAppLoggerService>(),
+      enabled: const bool.fromEnvironment('APOLLO_FIREBASE_PUSH_ENABLED'),
+    );
+    (await service.initialize()).fold((_) {}, (failure) => throw failure);
+    return service;
+  }, dispose: (service) => service.dispose());
   di.registerLazySingleton<IAppLogShareService>(() => AppLogShareService(
     di<IAppLoggerService>(),
     archivePassword: const String.fromEnvironment(

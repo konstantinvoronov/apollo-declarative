@@ -8,6 +8,8 @@ enum AboutApolloSheetResult { none, confirmed, cancelled }
 
 enum AboutApolloLogShareStatus { idle, sharing }
 
+enum AboutApolloNotificationStatus { idle, busy }
+
 @immutable
 class AboutApolloState extends Equatable {
   final AboutApolloStatus status;
@@ -17,6 +19,9 @@ class AboutApolloState extends Equatable {
   final AboutApolloSheetResult sheetResult;
   final int versionTapCount;
   final AboutApolloLogShareStatus logShareStatus;
+  final AppNotificationPermissionModel? notificationPermission;
+  final AboutApolloNotificationStatus notificationStatus;
+  final AppPushRegistrationModel? pushRegistration;
 
   const AboutApolloState({
     required this.status,
@@ -26,6 +31,9 @@ class AboutApolloState extends Equatable {
     this.sheetResult = AboutApolloSheetResult.none,
     this.versionTapCount = 0,
     this.logShareStatus = AboutApolloLogShareStatus.idle,
+    this.notificationPermission,
+    this.notificationStatus = AboutApolloNotificationStatus.idle,
+    this.pushRegistration,
   });
 
   factory AboutApolloState.initial({
@@ -43,6 +51,9 @@ class AboutApolloState extends Equatable {
     AboutApolloSheetResult? sheetResult,
     int? versionTapCount,
     AboutApolloLogShareStatus? logShareStatus,
+    AppNotificationPermissionModel? notificationPermission,
+    AboutApolloNotificationStatus? notificationStatus,
+    AppPushRegistrationModel? pushRegistration,
   }) {
     return AboutApolloState(
       status: status ?? this.status,
@@ -52,10 +63,24 @@ class AboutApolloState extends Equatable {
       sheetResult: sheetResult ?? this.sheetResult,
       versionTapCount: versionTapCount ?? this.versionTapCount,
       logShareStatus: logShareStatus ?? this.logShareStatus,
+      notificationPermission:
+          notificationPermission ?? this.notificationPermission,
+      notificationStatus: notificationStatus ?? this.notificationStatus,
+      pushRegistration: pushRegistration ?? this.pushRegistration,
     );
   }
 
   @override
-  List<Object?> get props => [errors, status, version, buildNumber, sheetResult,
-    versionTapCount, logShareStatus];
+  List<Object?> get props => [
+    errors,
+    status,
+    version,
+    buildNumber,
+    sheetResult,
+    versionTapCount,
+    logShareStatus,
+    notificationPermission,
+    notificationStatus,
+    pushRegistration,
+  ];
 }

@@ -23,7 +23,12 @@
                         subPageId: state.pathParameters['subpageid']!, onTap: () {})),
 
  */
+import 'dart:async';
+
 import 'package:app_failure/app_failure.dart';
+import '../../core/domain/models/app_notification_interaction_model.dart';
+import '../../core/domain/services/i_app_local_notification_service.dart';
+import '../../core/domain/services/i_app_push_notification_service.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -55,6 +60,61 @@ class AppRouter {
 
   final Listenable? refresh;
   final GoRouterRedirect? redirect;
+  final _notificationSubscriptions =
+      <StreamSubscription<AppResult<AppNotificationInteractionModel>>>[];
+  final _openedNotifications = <String>{};
+  bool _disposed = false;
+  Future<void>? _notificationRouting;
+
+  Future<void> initializeNotificationRouting(
+    IAppLocalNotificationService local,
+    IAppPushNotificationService push,
+  ) => _notificationRouting ??= _subscribeToNotificationInteractions(
+    local,
+    push,
+  );
+
+  Future<void> _subscribeToNotificationInteractions(
+    IAppLocalNotificationService local,
+    IAppPushNotificationService push,
+  ) async {
+    if (_disposed) return;
+    _notificationSubscriptions.add(
+      local.interactions.listen(_openNotificationResult),
+    );
+    _notificationSubscriptions.add(
+      push.interactions.listen(_openNotificationResult),
+    );
+    _openNotificationResult(await local.consumeLaunchInteraction());
+    _openNotificationResult(await push.consumeLaunchInteraction());
+  }
+
+  void _openNotificationResult(
+    AppResult<AppNotificationInteractionModel?> result,
+  ) {
+    if (_disposed) return;
+    result.fold(
+      (interaction) {
+        if (interaction == null) return;
+        if (interaction.destination != 'home') {
+          AppLoggerService().log(
+            'notifications.routing.destination.rejected',
+            'notifications',
+          );
+          return;
+        }
+        if (!_openedNotifications.add(interaction.notificationId)) return;
+        if (_openedNotifications.length > 128) {
+          _openedNotifications.remove(_openedNotifications.first);
+        }
+        _router.go('/');
+        AppLoggerService().log('notifications.routing.opened', 'notifications');
+      },
+      (failure) {
+        AppLoggerService().logFailure(failure, context: 'notification routing');
+      },
+    );
+  }
 
   factory AppRouter({GoRouterRedirect? redirect, Listenable? refresh}) {
     return _instance ??= AppRouter._(redirect: redirect, refresh: refresh);
@@ -124,7 +184,11 @@ class AppRouter {
     );
   }
 
-  void dispose() {
+  Future<void> dispose() async {
+    _disposed = true;
+    for (final subscription in _notificationSubscriptions) {
+      await subscription.cancel();
+    }
     _router.dispose();
     _instance = null;
   }

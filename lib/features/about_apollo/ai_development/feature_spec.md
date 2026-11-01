@@ -47,3 +47,11 @@ Cancel invokes callSkipPop without a skip callback. Cancel, barrier dismissal, b
 ## Current verification
 
 Scoped Dart analysis of the feature passes. Runtime navigation, scrolling, cancellation, callback consumption, repeated opens, viewport fit, and theme appearance await Stage 7. Automated tests await a separate developer decision. Existing routing logs establish only partial navigation evidence; gesture and displayed-result correctness require runtime observation. The diagnostic specification has a separate text-approval gate in the bottom-sheet plan.
+
+## Notification demonstration — 2026-11-01
+
+On iOS and Android, About Apollo exposes Enable notifications, Show test notification and Cancel test notification. A configured build with `APOLLO_FIREBASE_PUSH_ENABLED=true` also exposes Enable push notifications. Permission and push registration are separate actions in the current implementation. Busy state prevents repeated explicit actions; permission outcomes and failures travel through the existing Controller/State and error listener.
+
+`AboutApolloCubit` consumes Core Domain notification contracts. While it is alive, it observes foreground push messages and registration events, requests local presentation for notification content, and suppresses recent duplicate SDK message IDs. Data-only messages are not automatically displayed. Each example display uses native slot 1001 for cancellation and a new interaction ID so later examples can route again. App routing accepts the typed `home` destination after startup readiness and handles both live and cold-start interactions.
+
+Acceptance: no startup permission prompt; explicit permission grant/denial is reflected; permitted display and cancellation work; repeated examples can each open home; configured push can register, receive and route on both platforms; closing the Controller disposes its subscriptions. Android compilation and scoped analysis pass; iOS simulator compilation also passes; visible presentation, permission interactions, signed provisioning and configured remote delivery remain unverified. Core setup and payload details are in [notifications_spec.md](../../../../ai_development/notifications_spec.md). The feature-specific [diagnostic procedure](about_apollo_logs_test_spec.md) distinguishes log evidence from device observations.

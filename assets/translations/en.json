@@ -18,6 +18,19 @@
       "result_none": "Open a sheet to try it",
       "result_confirmed": "Sheet confirmed",
       "result_cancelled": "Sheet cancelled"
+    },
+    "notifications": {
+      "enable": "Enable notifications",
+      "display": "Show test notification",
+      "cancel": "Cancel test notification",
+      "push": "Enable push notifications",
+      "title": "Hello from Apollo",
+      "body": "Tap to return to Apollo.",
+      "permission_unknown": "Choose Enable notifications to allow alerts.",
+      "permission_authorized": "Notifications are enabled.",
+      "permission_provisional": "Quiet notifications are enabled.",
+      "permission_denied": "Notifications are off. You can enable them in system settings.",
+      "permission_unavailable": "Notifications are unavailable on this platform."
     }
   }
 }
