@@ -1,14 +1,18 @@
 # Apollo Declarative
 
-Architecture, a Flutter application scaffold, and a project-local AI development harness for human-in-the-loop development.
+Apollo Declarative combines a Flutter application scaffold with a project-local AI development harness. Its Declarative Foldering approach makes architectural responsibilities, dependency boundaries, and entrypoints explicit, giving developers and coding agents a shared structure for planning, implementation, and review.
 
-Apollo Declarative gives developers and coding agents a shared way to decide where code belongs, what it may depend on, and how a change should be reviewed. It combines a working Flutter scaffold with a structured workflow that guides the developer and agent from discussing a change and resolving architectural responsibilities through planning, implementation, and review.
+## Engineering principles behind the AI harness
 
-The developer directs requirements, architectural decisions, and approvals; the coding agent assists with investigation, planning, implementation, and verification. This **human-in-the-loop development** workflow keeps decisions and review evidence available for the developer to inspect and refine.
+**AI harness engineering.** Apollo keeps agent instructions, reusable skills, architectural contracts, and review criteria alongside the source code. Its [project-local harness](ai_development/ai_harness.md) connects these artifacts into a development workflow; scoped patterns and developer-led maintenance let each project refine that workflow from recorded experience.
 
-Its architectural foundation, [**Declarative Foldering**](https://github.com/konstantinvoronov/ai_declarative_foldering_architecture), uses folders and scoped instructions to declare object responsibilities, dependency boundaries, and entrypoints. Project-local skills help the agent apply those declarations throughout the development process.
+**Context engineering.** Scoped `AGENTS.md` files supply architectural rules for the folders involved in a task, while specifications, plans, and recorded decisions supply its working context. [Context Checker](.agents/skills/context-checker/SKILL.md) audits that context for missing, excessive, stale, or incorrectly interpreted information and distinguishes demonstrated gaps from unverified loading.
 
-Apollo applies **harness engineering** through repository instructions, reusable skills, and staged reviews. Its **context engineering** centers on applicable architecture rules, task context, and recorded decisions, with [context-checker](.agents/skills/context-checker/SKILL.md) auditing relevance and coverage.
+**Spec-driven development.** Feature specifications describe expected behavior and acceptance checks; implementation plans record scope, decisions, progress, and remaining verification. Apollo uses these artifacts to guide implementation and review. The [About Apollo specification](lib/features/about_apollo/ai_development/feature_spec.md) shows how requirements, architectural ownership, and verification limits stay connected to a working feature.
+
+**Agent orchestration.** Project-local skills structure the agent's work: resolve responsibilities before implementation, check the resulting changes, and report verification evidence. [Finalize Job](.agents/skills/finalize-job/SKILL.md) coordinates pattern, naming, architecture, responsibility, scope, and diagnostic reviews. The orchestration lives in these skill-defined stages, executed by the coding agent.
+
+**Human-in-the-loop development.** The developer sets requirements, approves architectural changes, and directs corrections. Read-only review skills report findings separately from implementation; code-pattern violations explicitly declared and explained by the developer can be captured by [Violation Memory](.agents/skills/violation/SKILL.md), then turned into project guidance through explicitly approved harness maintenance.
 
 The project is actively evolving. Implemented examples and their verification limits are recorded in the development plans.
 
