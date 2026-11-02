@@ -1,8 +1,14 @@
 # Apollo Declarative
 
-An AI-driven application development framework by [Konstantin Voronov](https://github.com/konstantinvoronov), with a Flutter scaffold and working examples of declarative development.
+Architecture, a Flutter application scaffold, and a project-local AI development harness for human-in-the-loop development.
 
-Apollo brings the [AI Declarative Foldering Architecture](https://github.com/konstantinvoronov/ai_declarative_foldering_architecture) into a real application. It combines explicit architectural responsibilities, reusable modules, implementation patterns, and project-local AI skills to support production-oriented development.
+Apollo Declarative gives developers and coding agents a shared way to decide where code belongs, what it may depend on, and how a change should be reviewed. It combines a working Flutter scaffold with a structured workflow that guides the developer and agent from discussing a change and resolving architectural responsibilities through planning, implementation, and review.
+
+The developer directs requirements, architectural decisions, and approvals; the coding agent assists with investigation, planning, implementation, and verification. This **human-in-the-loop development** workflow keeps decisions and review evidence available for the developer to inspect and refine.
+
+Its architectural foundation, [**Declarative Foldering**](https://github.com/konstantinvoronov/ai_declarative_foldering_architecture), uses folders and scoped instructions to declare object responsibilities, dependency boundaries, and entrypoints. Project-local skills help the agent apply those declarations throughout the development process.
+
+Apollo applies **harness engineering** through repository instructions, reusable skills, and staged reviews. Its **context engineering** centers on applicable architecture rules, task context, and recorded decisions, with [context-checker](.agents/skills/context-checker/SKILL.md) auditing relevance and coverage.
 
 The project is actively evolving. Implemented examples and their verification limits are recorded in the development plans.
 
